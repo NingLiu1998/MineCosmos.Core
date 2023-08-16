@@ -3,7 +3,7 @@ echo "if u install template error,pls connect QQ:3143422472"
 
 
 color 3
-dotnet new -i Blog.Core.Webapi.Template
+dotnet new -i MineCosmos.Core.Webapi.Template
 
 set /p OP=Please set your project name(for example:BlogMicService):
 
@@ -18,7 +18,7 @@ cd ../
 
 echo "Create Successfully!!!! ^ please see the folder .1YourProject"
 
-dotnet new -u Blog.Core.Webapi.Template
+dotnet new -u MineCosmos.Core.Webapi.Template
 
 
 echo "Delete Template Successfully"

@@ -1,0 +1,15 @@
+[
+  {
+    "bID": 1,
+    "bsubmitter": "GreatMingCtu",
+    "btitle": "测试",
+    "bcategory": "服务器通告",
+    "bcontent": "示例文章",
+    "btraffic": 127,
+    "bcommentNum": 1,
+    "bUpdateTime": "\/Date(1546272000000+0800)\/",
+    "bCreateTime": "\/Date(1546272000000+0800)\/",
+    "bRemark": null,
+    "IsDeleted": 0
+  }
+]

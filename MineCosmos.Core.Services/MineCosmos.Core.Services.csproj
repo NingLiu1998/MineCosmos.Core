@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath>..\MineCosmos.Core.Api\bin\Debug\</OutputPath>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<OutputPath>..\MineCosmos.Core\bin\Release\</OutputPath>
+	</PropertyGroup>
+	 
+
+	<ItemGroup>
+		<ProjectReference Include="..\MineCosmos.Core.IServices\MineCosmos.Core.IServices.csproj" />
+		<ProjectReference Include="..\MineCosmos.Core.Repository\MineCosmos.Core.Repository.csproj" />
+	</ItemGroup>
+
+</Project>

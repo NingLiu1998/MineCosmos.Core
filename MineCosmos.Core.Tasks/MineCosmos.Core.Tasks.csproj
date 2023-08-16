@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Quartz" Version="3.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MineCosmos.Core.Common\MineCosmos.Core.Common.csproj" />
+    <ProjectReference Include="..\MineCosmos.Core.IServices\MineCosmos.Core.IServices.csproj" />
+  </ItemGroup>
+
+</Project>

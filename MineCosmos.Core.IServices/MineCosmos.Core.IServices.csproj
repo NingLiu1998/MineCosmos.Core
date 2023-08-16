@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MineCosmos.Core.Common\MineCosmos.Core.Common.csproj" />
+    <ProjectReference Include="..\MineCosmos.Core.Model\MineCosmos.Core.Model.csproj" />
+  </ItemGroup>
+
+</Project>

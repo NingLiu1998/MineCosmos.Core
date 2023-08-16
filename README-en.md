@@ -1,9 +1,9 @@
-[ENGLISH](https://github.com/anjoy8/Blog.Core/blob/master/README-en.md) | [中文版](https://github.com/anjoy8/Blog.Core/blob/master/README.md)
+[ENGLISH](https://github.com/anjoy8/MineCosmos.Core/blob/master/README-en.md) | [中文版](https://github.com/anjoy8/MineCosmos.Core/blob/master/README.md)
 
 
 
 
-[![sdk](https://img.shields.io/badge/sdk-5.0.1-d.svg)](#)  [![Build status](https://github.com/anjoy8/blog.core/workflows/.NET%20Core/badge.svg)](https://github.com/anjoy8/Blog.Core/actions)  [![Build Status](https://dev.azure.com/laozhangisphi/anjoy8/_apis/build/status/anjoy8.Blog.Core?branchName=master)](https://dev.azure.com/laozhangisphi/anjoy8/_build?definitionId=1)  [![codecov](https://codecov.io/gh/anjoy8/Blog.Core/branch/master/graph/badge.svg)](https://codecov.io/gh/anjoy8/Blog.Core)  [![License MIT](https://img.shields.io/badge/license-Apache-blue.svg?style=flat-square)](https://github.com/anjoy8/Blog.Core/blob/master/LICENSE) [![star this repo](http://githubbadges.com/star.svg?user=anjoy8&repo=blog.core&style=flat)](https://github.com/boennemann/badges)  [![fork this repo](http://githubbadges.com/fork.svg?user=anjoy8&repo=blog.core&style=flat)](https://github.com/boennemann/badges/fork)  [![Cnblogs](https://img.shields.io/badge/博客园-老张的哲学-brightgreen.svg)](https://www.cnblogs.com/laozhang-is-phi/)
+[![sdk](https://img.shields.io/badge/sdk-5.0.1-d.svg)](#)  [![Build status](https://github.com/anjoy8/minecosmos.core/workflows/.NET%20Core/badge.svg)](https://github.com/anjoy8/MineCosmos.Core/actions)  [![Build Status](https://dev.azure.com/laozhangisphi/anjoy8/_apis/build/status/anjoy8.MineCosmos.Core?branchName=master)](https://dev.azure.com/laozhangisphi/anjoy8/_build?definitionId=1)  [![codecov](https://codecov.io/gh/anjoy8/MineCosmos.Core/branch/master/graph/badge.svg)](https://codecov.io/gh/anjoy8/MineCosmos.Core)  [![License MIT](https://img.shields.io/badge/license-Apache-blue.svg?style=flat-square)](https://github.com/anjoy8/MineCosmos.Core/blob/master/LICENSE) [![star this repo](http://githubbadges.com/star.svg?user=anjoy8&repo=minecosmos.core&style=flat)](https://github.com/boennemann/badges)  [![fork this repo](http://githubbadges.com/fork.svg?user=anjoy8&repo=minecosmos.core&style=flat)](https://github.com/boennemann/badges/fork)  [![Cnblogs](https://img.shields.io/badge/博客园-老张的哲学-brightgreen.svg)](https://www.cnblogs.com/laozhang-is-phi/)
 
 
 &nbsp;
@@ -21,9 +21,9 @@
 </div>
 
 
-Blog.Core is an enterprise-class back-to-back separation framework for.NET Core5.0 API + Vue 2.x + RBAC.
+MineCosmos.Core is an enterprise-class back-to-back separation framework for.NET Core5.0 API + Vue 2.x + RBAC.
 Website: http://apk.neters.club/.doc/
-Has been used by several companies: [click to view list] (https://github.com/anjoy8/Blog.Core/issues/75)
+Has been used by several companies: [click to view list] (https://github.com/anjoy8/MineCosmos.Core/issues/75)
 
 Project single deployment, concurrent at 400~500, all normal (do not guarantee their own various error writing).
 The effect is even better if the load is matched.
@@ -82,7 +82,7 @@ Micro service module:
 
 ## Give a star! ⭐ ️
 If you like this project or it helps you, please send it to STAR ~
-If your project from the project, please explain a little bit down [https://github.com/anjoy8/Blog.Core/issues/75] (https://github.com/anjoy8/Blog.Core/issues/75), Open source is not easy ✨.
+If your project from the project, please explain a little bit down [https://github.com/anjoy8/MineCosmos.Core/issues/75] (https://github.com/anjoy8/MineCosmos.Core/issues/75), Open source is not easy ✨.
 
 
 
@@ -112,7 +112,7 @@ Jianshu: https://www.jianshu.com/notebooks/28621653
 Blog Park: https://www.cnblogs.com/laozhang-is-phi/
  
  csdn:https://blog.csdn.net/baidu_35726140 
- Code Cloud: Https://gitee.com/laozhangIsPhi/Blog.Core
+ Code Cloud: Https://gitee.com/laozhangIsPhi/MineCosmos.Core
  
  <div class=""allindex"">
 <h1 id=""allindex"">Directory</h1>

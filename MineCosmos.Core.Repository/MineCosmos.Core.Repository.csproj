@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+	</PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Bson" Version="2.17.1" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.17.1" />
+    <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
+  </ItemGroup>
+  
+  
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath>..\MineCosmos.Core.Api\bin\Debug\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<OutputPath>..\MineCosmos.Core\bin\Release\</OutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MiniProfiler.AspNetCore.Mvc" Version="4.2.22" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\MineCosmos.Core.Common\MineCosmos.Core.Common.csproj" />
+	  <ProjectReference Include="..\MineCosmos.Core.Model\MineCosmos.Core.Model.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -35,9 +35,6 @@ bld/
 # Visual Studio 2017 auto generated files
 Generated\ Files/
 
-# Visual Studio Code 
-.vscode
-
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
@@ -349,12 +346,9 @@ healthchecksdb
 .1YourProject
 .PublishFiles
 !.template.config/*.nupkg
-!Blog.Core.Webapi.Template.*.nupkg
-Blog.Core/WMBlog.db
+!MineCosmos.Core.Webapi.Template.*.nupkg
+MineCosmos.Core/WMBlog.db
 .docs/contents/.vuepress/dist/*
-Blog.Core/Blog.Core*.xml
-Blog.Core.Api/WMBlog.db
-Blog.Core.Api/wwwroot/ui/
-Blog.Core.Api/Logs
-*.db
-/Blog.Core.Api/WMBlog.db-journal
+MineCosmos.Core/MineCosmos.Core*.xml
+MineCosmos.Core.Api/WMBlog.db
+MineCosmos.Core.Api/wwwroot/ui/

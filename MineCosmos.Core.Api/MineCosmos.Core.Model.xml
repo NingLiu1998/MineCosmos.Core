@@ -1,0 +1,1844 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MineCosmos.Core.Model</name>
+    </assembly>
+    <members>
+        <member name="F:MineCosmos.Core.Model.AuthorityScopeEnum.NONE">
+            <summary>
+            无任何权限
+            </summary>
+        </member>
+        <member name="F:MineCosmos.Core.Model.AuthorityScopeEnum.Custom">
+            <summary>
+            自定义权限
+            </summary>
+        </member>
+        <member name="F:MineCosmos.Core.Model.AuthorityScopeEnum.MyDepart">
+            <summary>
+            本部门
+            </summary>
+        </member>
+        <member name="F:MineCosmos.Core.Model.AuthorityScopeEnum.MyDepartAndDown">
+            <summary>
+            本部门及以下
+            </summary>
+        </member>
+        <member name="F:MineCosmos.Core.Model.AuthorityScopeEnum.OnlySelf">
+            <summary>
+            仅自己
+            </summary>
+        </member>
+        <member name="F:MineCosmos.Core.Model.AuthorityScopeEnum.ALL">
+            <summary>
+            所有
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.IDS4DbModels.ApplicationRole">
+            <summary>
+            以下model 来自ids4项目，多库模式，为了调取ids4数据
+            角色表
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.IDS4DbModels.ApplicationRole.OrderSort">
+             <summary>
+            排序
+             </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.IDS4DbModels.ApplicationRole.Enabled">
+            <summary>
+            是否激活
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.IDS4DbModels.ApplicationRole.CreateId">
+            <summary>
+            创建ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.IDS4DbModels.ApplicationRole.CreateBy">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.IDS4DbModels.ApplicationRole.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.IDS4DbModels.ApplicationRole.ModifyId">
+            <summary>
+            修改ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.IDS4DbModels.ApplicationRole.ModifyBy">
+            <summary>
+            修改者
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.IDS4DbModels.ApplicationRole.ModifyTime">
+            <summary>
+            修改时间
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.IDS4DbModels.ApplicationUser">
+            <summary>
+            以下model 来自ids4项目，多库模式，为了调取ids4数据
+            用户表
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Love">
+            <summary>
+            这是爱
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Love.Id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Love.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Love.Age">
+            <summary>
+            年龄
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.MessageModel`1">
+            <summary>
+            通用返回信息类
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.MessageModel`1.status">
+            <summary>
+            状态码
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.MessageModel`1.success">
+            <summary>
+            操作是否成功
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.MessageModel`1.msg">
+            <summary>
+            返回信息
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.MessageModel`1.msgDev">
+            <summary>
+            开发者信息
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.MessageModel`1.response">
+            <summary>
+            返回数据集合
+            </summary>
+        </member>
+        <member name="M:MineCosmos.Core.Model.MessageModel`1.Success(System.String)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="msg">消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:MineCosmos.Core.Model.MessageModel`1.Success(System.String,`0)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="msg">消息</param>
+            <param name="response">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:MineCosmos.Core.Model.MessageModel`1.Fail(System.String)">
+            <summary>
+            返回失败
+            </summary>
+            <param name="msg">消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:MineCosmos.Core.Model.MessageModel`1.Fail(System.String,`0)">
+            <summary>
+            返回失败
+            </summary>
+            <param name="msg">消息</param>
+            <param name="response">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:MineCosmos.Core.Model.MessageModel`1.Message(System.Boolean,System.String,`0)">
+            <summary>
+            返回消息
+            </summary>
+            <param name="success">失败/成功</param>
+            <param name="msg">消息</param>
+            <param name="response">数据</param>
+            <returns></returns>
+        </member>
+        <member name="P:MineCosmos.Core.Model.MessageModel.status">
+            <summary>
+            状态码
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.MessageModel.success">
+            <summary>
+            操作是否成功
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.MessageModel.msg">
+            <summary>
+            返回信息
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.MessageModel.response">
+            <summary>
+            返回数据集合
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.AccessTrendLog">
+            <summary>
+            用户访问趋势日志
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.AccessTrendLog.User">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.AccessTrendLog.Count">
+            <summary>
+            次数
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Advertisement.ImgUrl">
+            <summary>
+            广告图片
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Advertisement.Title">
+            <summary>
+            广告标题
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Advertisement.Url">
+            <summary>
+            广告链接
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.BlogArticle">
+            <summary>
+            博客文章
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.BlogArticle.Submitter">
+            <summary>
+            创建人
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.BlogArticle.Title">
+            <summary>
+            标题blog
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.BlogArticle.Category">
+            <summary>
+            类别
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.BlogArticle.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.BlogArticle.Traffic">
+            <summary>
+            访问量
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.Department">
+            <summary>
+             部门表
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Department.CodeRelationship">
+            <summary>
+            Desc:部门关系编码
+            Default:
+            Nullable:True
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Department.Name">
+            <summary>
+            Desc:部门名称
+            Default:
+            Nullable:True
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Department.Leader">
+            <summary>
+            Desc:负责人
+            Default:
+            Nullable:True
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Department.OrderSort">
+            <summary>
+            Desc:排序
+            Default:
+            Nullable:True
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Department.Status">
+            <summary>
+            Desc:部门状态（0正常 1停用）
+            Default:0
+            Nullable:True
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Department.CreateBy">
+            <summary>
+            Desc:创建者
+            Default:
+            Nullable:True
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Department.ModifyBy">
+            <summary>
+            Desc:更新者
+            Default:
+            Nullable:True
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Department.ModifyTime">
+            <summary>
+            Desc:更新时间
+            Default:
+            Nullable:True
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.GblLogAudit">
+            <summary>
+            用户团队表
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.GblLogAudit.Id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.GblLogAudit.TraceId">
+            <summary>
+            HttpContext.TraceIdentifier 事件链路ID（获取或设置一个唯一标识符，用于在跟踪日志中表示此请求。）
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.GblLogAudit.Date">
+            <summary>
+            时间
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.GblLogAudit.Thread">
+            <summary>
+            线程
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.GblLogAudit.Level">
+            <summary>
+            等级
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.GblLogAudit.Logger">
+            <summary>
+            记录器
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.GblLogAudit.LogType">
+            <summary>
+            日志类型
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.GblLogAudit.DataType">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.GblLogAudit.Message">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.GblLogAudit.Exception">
+            <summary>
+            异常
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.Guestbook">
+            <summary>
+            留言板
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Guestbook.blogId">
+            <summary>
+            博客ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Guestbook.phone">
+            <summary>
+            手机
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Guestbook.QQ">
+            <summary>
+            qq
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Guestbook.body">
+            <summary>
+            留言内容
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Guestbook.ip">
+            <summary>
+            ip地址
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Guestbook.isshow">
+            <summary>
+             是否显示在前台,0否1是
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.DicMinecraftItem">
+            <summary>
+            Minecraft物品字典表
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.DicMinecraftItem.NamespacedIdentifier">
+            <summary>
+            命名空间ID,和wiki一样的原类型名（原版/模组）
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.DicMinecraftItem.Platform">
+            <summary>
+             JE/BE 不考虑其他的
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.DicMinecraftItem.MaterialId">
+            <summary>
+             关联材质包字典表，如果是原版则为0
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.DicMinecraftItem.ModuleId">
+            <summary>
+             关联模组字典表，如果是原版则为0
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.DicMinecraftItem.Alias">
+            <summary>
+             别名 （中文名）
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.DicMinecraftMaterial.Name">
+            <summary>
+            材质包名称
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.DicMinecraftMaterial.CDNUrl">
+            <summary>
+            CDN地址
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.DicMinecraftMaterial.Enable">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.DicMinecraftServer.ServerName">
+            <summary>
+            服务器名称
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.DicMinecraftServer.CurrentPtc">
+            <summary>
+            当前周目
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.DicMinecraftServer.ConnectAddress">
+            <summary>
+            连接地址,单个: “192.168.1.1:123456”，多个用;分割
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.MinecraftPlayer">
+            <summary>
+            玩家信息
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.MinecraftPlayer.Name">
+            <summary>
+            玩家名称（纯英文）
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.MinecraftPlayer.UUID">
+            <summary>
+            正版唯一ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.MinecraftPlayer.KookUserId">
+            <summary>
+            KookID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.MinecraftPlayer.DiscordId">
+            <summary>
+            DiscordId
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.MinecraftPlayer.QQ">
+            <summary>
+            qq
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.MinecraftPlayer.JoinType">
+            <summary>
+            加入方式：如：原版服务器、模组服务器、Kook
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.MinecraftPlayer.LastWebLoginTime">
+            <summary>
+            最后网页登录时间
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.MinecraftPlayer.LastServerLoginTime">
+            <summary>
+            最后进服时间
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.MinecraftPlayer.LastLoginKookTime">
+            <summary>
+            Kook最后登录时间
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.BanPacket">
+            <summary>
+            封包数据
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.BanPacket.Key">
+            <summary>
+            用于获取的key，主要通过这个查找
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.BanPacket.Md5">
+            <summary>
+            包的md5值
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.BanPacket.Enum">
+            <summary>
+            包类型
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.BanPacketTypeEnum">
+            <summary>
+            封包数据类型，未来可扩展多种不同类型的包
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.PlayerWareHouse">
+            <summary>
+            玩家仓库
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.PlayerWareHouse.PlayerId">
+            <summary>
+            玩家ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.PlayerWareHouse.UpperLimit">
+            <summary>
+             上限（栏位）
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.PlayerWareHouse.Cover">
+            <summary>
+            封面
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.PlayerWareHouse.MaterialId">
+            <summary>
+            物品展示材质包ID，为空则默认原版
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.PlayerWareHouseItem">
+            <summary>
+            玩家仓库子表
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.PlayerWareHouseItem.WareHouseId">
+            <summary>
+            主表仓库ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.PlayerWareHouseItem.ItemData">
+            <summary>
+            Minecraft物品数据 （就是Minecraft里面一个ItemStack的数据）
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.PlayerWareHouseItem.ItemType">
+            <summary>
+            物品类型（可能产生的json数据会不一样，所以这里区分)
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.PlayerWareHouseItem.Slot">
+            <summary>
+            所在栏位 (主要作用于前端界面展示
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.Modules">
+            <summary>
+            接口API地址信息表
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Modules.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Modules.LinkUrl">
+            <summary>
+            菜单链接地址
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Modules.Area">
+            <summary>
+            区域名称
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Modules.Controller">
+            <summary>
+            控制器名称
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Modules.Action">
+            <summary>
+            Action名称
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Modules.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Modules.Code">
+            <summary>
+            菜单编号
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Modules.OrderSort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Modules.Description">
+            <summary>
+            /描述
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Modules.IsMenu">
+            <summary>
+            是否是右侧菜单
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Modules.Enabled">
+            <summary>
+            是否激活
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.OperateLog">
+            <summary>
+            日志记录
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.OperateLog.Area">
+            <summary>
+            区域名
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.OperateLog.Controller">
+            <summary>
+            区域控制器名
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.OperateLog.Action">
+            <summary>
+            Action名称
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.OperateLog.IPAddress">
+            <summary>
+            IP地址
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.OperateLog.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.OperateLog.LogTime">
+            <summary>
+            登录时间
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.OperateLog.LoginName">
+            <summary>
+            登录名称
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.OperateLog.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.PasswordLib">
+            <summary>
+            密码库表
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.PasswordLib.IsDeleted">
+             <summary>
+            获取或设置是否禁用，逻辑上的删除，非物理删除
+             </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.Permission">
+            <summary>
+            路由菜单表
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Permission.Code">
+            <summary>
+            菜单执行Action名
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Permission.Name">
+            <summary>
+            菜单显示名（如用户页、编辑(按钮)、删除(按钮)）
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Permission.IsButton">
+            <summary>
+            是否是按钮
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Permission.IsHide">
+            <summary>
+            是否是隐藏菜单
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Permission.IskeepAlive">
+            <summary>
+            是否keepAlive
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Permission.Func">
+            <summary>
+            按钮事件
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Permission.OrderSort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Permission.Icon">
+            <summary>
+            菜单图标
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Permission.Description">
+            <summary>
+            菜单描述    
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Permission.Enabled">
+            <summary>
+            激活状态
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.Role">
+            <summary>
+            角色表
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Role.Name">
+            <summary>
+            角色名
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Role.Description">
+             <summary>
+            描述
+             </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Role.OrderSort">
+             <summary>
+            排序
+             </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Role.Dids">
+            <summary>
+            自定义权限的部门ids
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Role.AuthorityScope">
+            <summary>
+            权限范围
+            -1 无任何权限；1 自定义权限；2 本部门；3 本部门及以下；4 仅自己；9 全部；
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.Role.Enabled">
+            <summary>
+            是否激活
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.RoleModulePermission">
+            <summary>
+            按钮跟权限关联表
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.SysUserInfo">
+            <summary>
+            用户信息表
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.SysUserInfo.LoginName">
+            <summary>
+            登录账号
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.SysUserInfo.LoginPWD">
+            <summary>
+            登录密码
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.SysUserInfo.RealName">
+            <summary>
+            真实姓名
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.SysUserInfo.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.SysUserInfo.DepartmentId">
+            <summary>
+            部门
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.SysUserInfo.CriticalModifyTime">
+            <summary>
+            关键业务修改时间
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.SysUserInfo.LastErrorTime">
+             <summary>
+            最后异常时间 
+             </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.SysUserInfo.ErrorCount">
+             <summary>
+            错误次数 
+             </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.SysUserInfo.Name">
+            <summary>
+            登录账号
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.TasksQz">
+            <summary>
+            任务计划表
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.TasksQz.Name">
+            <summary>
+            任务名称
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.TasksQz.JobGroup">
+            <summary>
+            任务分组
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.TasksQz.Cron">
+            <summary>
+            任务运行时间表达式
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.TasksQz.AssemblyName">
+            <summary>
+            任务所在DLL对应的程序集名称
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.TasksQz.ClassName">
+            <summary>
+            任务所在类
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.TasksQz.RunTimes">
+            <summary>
+            执行次数
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.TasksQz.BeginTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.TasksQz.EndTime">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.TasksQz.TriggerType">
+            <summary>
+            触发器类型（0、simple 1、cron）
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.TasksQz.IntervalSecond">
+            <summary>
+            执行间隔时间, 秒为单位
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.TasksQz.CycleRunTimes">
+            <summary>
+            循环执行次数
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.TasksQz.IsStart">
+            <summary>
+            是否启动
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.TasksQz.JobParams">
+            <summary>
+            执行传参
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.TasksQz.Triggers">
+            <summary>
+            任务内存中的状态
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.Models.UserRole">
+            <summary>
+            用户跟角色关联表
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.UserRole.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.UserRole.RoleId">
+            <summary>
+            角色ID
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.DepartmentRoot`1">
+            <summary>
+            部门表
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.DepartmentRoot`1.Pid">
+            <summary>
+            上一级（0表示无上一级）
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ModulesRoot`1">
+            <summary>
+            接口API地址信息表 
+            父类
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ModulesRoot`1.ParentId">
+            <summary>
+            父ID
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.PermissionRoot`1">
+            <summary>
+            路由菜单表
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.PermissionRoot`1.Pid">
+            <summary>
+            上一级菜单（0表示上一级无菜单）
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.PermissionRoot`1.Mid">
+            <summary>
+            接口api
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.RoleModulePermissionRoot`1">
+            <summary>
+            按钮跟权限关联表
+            父类
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.RoleModulePermissionRoot`1.RoleId">
+            <summary>
+            角色ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.RoleModulePermissionRoot`1.ModuleId">
+            <summary>
+            菜单ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.RoleModulePermissionRoot`1.PermissionId">
+            <summary>
+            api ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.RootEntityTkey`1.Id">
+            <summary>
+            ID
+            泛型主键Tkey
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.RootEntityTkey`1.ModifyTime">
+            <summary> 
+            修改时间
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.RootEntityTkey`1.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.RootEntityTkey`1.CreateId">
+            <summary>
+            创建ID
+            </summary>        
+        </member>
+        <member name="P:MineCosmos.Core.Model.RootEntityTkey`1.ModifyId">
+            <summary>
+            修改ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.RootEntityTkey`1.IsDeleted">
+            <summary>
+            逻辑删除
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.RootEntityTkey`1.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.SysUserInfoRoot`1">
+            <summary>
+            用户信息表
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.TopicDetailRoot`1">
+            <summary>
+            Tibug 博文
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.PageModel`1">
+            <summary>
+            通用分页信息类
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.PageModel`1.page">
+            <summary>
+            当前页标
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.PageModel`1.pageCount">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.PageModel`1.dataCount">
+            <summary>
+            数据总数
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.PageModel`1.PageSize">
+            <summary>
+            每页大小
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.PageModel`1.data">
+            <summary>
+            返回数据
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.PaginationModel">
+            <summary>
+            所需分页参数
+            作者:胡丁文
+            时间:2020-4-3 20:31:26
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.PaginationModel.PageIndex">
+            <summary>
+            当前页
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.PaginationModel.PageSize">
+            <summary>
+            每页大小
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.PaginationModel.OrderByFileds">
+            <summary>
+            排序字段(例如:id desc,time asc)
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.PaginationModel.Conditions">
+            <summary>
+            查询条件( 例如:id = 1 and name = 小明)
+            </summary>
+        </member>
+        <member name="F:MineCosmos.Core.Model.ResponseEnum.NoPermissions">
+            <summary>
+            无权限
+            </summary>
+        </member>
+        <member name="F:MineCosmos.Core.Model.ResponseEnum.NoFound">
+            <summary>
+            找不到指定资源
+            </summary>
+        </member>
+        <member name="F:MineCosmos.Core.Model.ResponseEnum.ServerError">
+            <summary>
+            找不到指定资源
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.TableModel`1">
+            <summary>
+            表格数据，支持分页
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.TableModel`1.Code">
+            <summary>
+            返回编码
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.TableModel`1.Msg">
+            <summary>
+            返回信息
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.TableModel`1.Count">
+            <summary>
+            记录总数
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.TableModel`1.Data">
+            <summary>
+            返回数据集
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.AdvertisementViewModels">
+            <summary>
+            广告类
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.AdvertisementViewModels.Id">
+            <summary>
+            分类ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.AdvertisementViewModels.Createdate">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.AdvertisementViewModels.ImgUrl">
+            <summary>
+            广告图片
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.AdvertisementViewModels.Title">
+            <summary>
+            广告标题
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.AdvertisementViewModels.Url">
+            <summary>
+            广告链接
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.AdvertisementViewModels.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.BlogViewModels">
+            <summary>
+            博客信息展示类
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.BlogViewModels.bID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.BlogViewModels.bsubmitter">
+            <summary>创建人
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.BlogViewModels.btitle">
+            <summary>博客标题
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.BlogViewModels.digest">
+            <summary>摘要
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.BlogViewModels.previous">
+            <summary>
+            上一篇
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.BlogViewModels.previousID">
+            <summary>
+            上一篇id
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.BlogViewModels.next">
+            <summary>
+            下一篇
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.BlogViewModels.nextID">
+            <summary>
+            下一篇id
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.BlogViewModels.bcategory">
+            <summary>类别
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.BlogViewModels.bcontent">
+            <summary>内容
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.BlogViewModels.btraffic">
+            <summary>
+            访问量
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.BlogViewModels.bcommentNum">
+            <summary>
+            评论数量
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.BlogViewModels.bUpdateTime">
+            <summary> 修改时间
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.BlogViewModels.bCreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.BlogViewModels.bRemark">
+            <summary>备注
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.EnumDemoDto.Type">
+            <summary>
+            Type Description balabala
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.GuestbookViewModels">
+            <summary>
+            留言信息展示类
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.GuestbookViewModels.id">
+            <summary>留言表
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.GuestbookViewModels.blogId">
+            <summary>博客ID
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.GuestbookViewModels.createdate">
+            <summary>创建时间
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.GuestbookViewModels.phone">
+            <summary>手机
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.GuestbookViewModels.QQ">
+            <summary>qq
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.GuestbookViewModels.body">
+            <summary>留言内容
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.GuestbookViewModels.ip">
+            <summary>ip地址
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.GuestbookViewModels.isshow">
+            <summary>是否显示在前台,0否1是
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.MERCHANTID">
+            <summary>
+            商户号
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.POSID">
+            <summary>
+            柜台号
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.BRANCHID">
+            <summary>
+            分行号
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.GROUPMCH">
+            <summary>
+            集团商户信息
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.TXCODE">
+            <summary>
+            交易码
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.MERFLAG">
+            <summary>
+            商户类型
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.TERMNO1">
+            <summary>
+            终端编号 1
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.TERMNO2">
+            <summary>
+            终端编号 2
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.ORDERID">
+            <summary>
+            订单号
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.QRCODE">
+            <summary>
+            码信息（一维码、二维码）
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.AMOUNT">
+            <summary>
+            订单金额，单位：元
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.PROINFO">
+            <summary>
+            商品名称
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.REMARK1">
+            <summary>
+            备注 1
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.REMARK2">
+            <summary>
+            备注 2
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.FZINFO1">
+            <summary>
+            分账信息一
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.FZINFO2">
+            <summary>
+            分账信息二
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.SUB_APPID">
+            <summary>
+            子商户公众账号 ID
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.RETURN_FIELD">
+            <summary>
+            返回信息位图
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.USERPARAM">
+            <summary>
+            实名支付
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.detail">
+            <summary>
+            商品详情
+            </summary>  
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.goods_tag">
+            <summary>
+            订单优惠标记
+            </summary>                           
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.pubKey">
+            <summary>
+            公钥
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.url">
+            <summary>
+            请求地址
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.deleteEmpty">
+            <summary>
+            是否删除空值
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.PayNeedModel">
+            <summary>
+            退款参数
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayNeedModel.ORDERID">
+            <summary>
+            订单ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayNeedModel.PROINFO">
+            <summary>
+            商品名称
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayNeedModel.AMOUNT">
+            <summary>
+            支付金额(小数点最多两位)
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayNeedModel.QRCODE">
+            <summary>
+            二维码/条码信息
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayNeedModel.REMARK1">
+            <summary>
+            备注信息1
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayNeedModel.REMARK2">
+            <summary>
+            备注信息2
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.PayRefundNeedModel">
+            <summary>
+            订单参数
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundNeedModel.ORDER">
+            <summary>
+            订单号
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundNeedModel.MONEY">
+            <summary>
+            退款金额
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundNeedModel.REFUND_CODE">
+            <summary>
+            退款流水号(可选)
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.PayRefundReturnModel">
+            <summary>
+            退款返回消息
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnModel.REQUEST_SN">
+            <summary>
+            序列号
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnModel.CUST_ID">
+            <summary>
+            商户号
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnModel.TX_CODE">
+            <summary>
+            交易码
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnModel.RETURN_CODE">
+            <summary>
+            返回码
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnModel.RETURN_MSG">
+            <summary>
+            返回码说明
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnModel.LANGUAGE">
+            <summary>
+            语言
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnModel.TX_INFO">
+            <summary>
+            订单信息
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.PayRefundReturnOrderInfoModel">
+            <summary>
+            订单信息
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnOrderInfoModel.ORDER_NUM">
+            <summary>
+            订单号
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnOrderInfoModel.PAY_AMOUNT">
+            <summary>
+            支付金额
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnOrderInfoModel.AMOUNT">
+            <summary>
+            退款金额
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnOrderInfoModel.REM1">
+            <summary>
+            备注1
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnOrderInfoModel.REM2">
+            <summary>
+            备注2
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.PayRefundReturnResultModel">
+            <summary>
+            退款返回结果消息
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnResultModel.ORDER_NUM">
+            <summary>
+            订单号
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnResultModel.PAY_AMOUNT">
+            <summary>
+            支付金额
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnResultModel.AMOUNT">
+            <summary>
+            退款金额
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnResultModel.REQUEST_SN">
+            <summary>
+            序列号
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnResultModel.CUST_ID">
+            <summary>
+            商户号
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnResultModel.TX_CODE">
+            <summary>
+            交易码
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnResultModel.RETURN_CODE">
+            <summary>
+            返回码
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnResultModel.RETURN_MSG">
+            <summary>
+            返回码说明
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayRefundReturnResultModel.LANGUAGE">
+            <summary>
+            语言
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.PayResultModel">
+            <summary>
+            支付结果dto
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayResultModel.RESULT">
+            <summary>
+            支付结果
+            Y：成功
+            N：失败
+            U：不确定
+            Q：待轮询 
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayResultModel.ORDERID">
+            <summary>
+            订单ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayResultModel.AMOUNT">
+            <summary>
+            支付金额
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayResultModel.QRCODETYPE">
+            <summary>
+            二维码类型
+            1：龙支付
+            2：微信
+            3：支付宝
+            4：银联 
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayResultModel.WAITTIME">
+            <summary>
+            等待时间-轮询等待时间
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayResultModel.TRACEID">
+            <summary>
+            全局事件跟踪号-建行交易流水号
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayResultModel.ERRCODE">
+            <summary>
+            错误码
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayResultModel.ERRMSG">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayResultModel.SIGN">
+            <summary>
+            验证签名-防止伪造攻击
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.PayReturnResultModel">
+            <summary>
+            返回支付结果
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayReturnResultModel.ORDERID">
+            <summary>
+            发起的订单ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayReturnResultModel.AMOUNT">
+            <summary>
+            返回支付的金额
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayReturnResultModel.QRCODETYPE">
+            <summary>
+            返回支付的类型 1：龙支付 2：微信 3：支付宝 4：银联
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayReturnResultModel.TRACEID">
+            <summary>
+            返回建行的流水号
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayReturnResultModel.ERRCODE">
+            <summary>
+            错误代码
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.PayReturnResultModel.ERRMSG">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.QuartzReflectionViewModel">
+            <summary>
+            实现IJob的类
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.QuartzReflectionViewModel.nameSpace">
+            <summary>
+            命名空间
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.QuartzReflectionViewModel.nameClass">
+            <summary>
+            类名
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.QuartzReflectionViewModel.remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.ServerViewModel">
+            <summary>
+            服务器VM
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.ServerViewModel.EnvironmentName">
+            <summary>
+            环境变量
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.ServerViewModel.OSArchitecture">
+            <summary>
+            系统架构
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.ServerViewModel.ContentRootPath">
+            <summary>
+            ContentRootPath
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.ServerViewModel.WebRootPath">
+            <summary>
+            WebRootPath
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.ServerViewModel.FrameworkDescription">
+            <summary>
+            .NET Core版本
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.ServerViewModel.MemoryFootprint">
+            <summary>
+            内存占用
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.ServerViewModel.WorkingTime">
+            <summary>
+            启动时间
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.SidebarMenuViewModel">
+            <summary>
+            菜单展示model
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.TaskInfoDto">
+            <summary>
+            调度任务触发器信息实体
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.TaskInfoDto.jobId">
+            <summary>
+            任务ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.TaskInfoDto.jobName">
+            <summary>
+            任务名称
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.TaskInfoDto.jobGroup">
+            <summary>
+            任务分组
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.TaskInfoDto.triggerId">
+            <summary>
+            触发器ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.TaskInfoDto.triggerName">
+            <summary>
+            触发器名称
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.TaskInfoDto.triggerGroup">
+            <summary>
+            触发器分组
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.TaskInfoDto.triggerStatus">
+            <summary>
+            触发器状态
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.TestRestSharpGetDto">
+            <summary>
+            用来测试 RestSharp Get 请求
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.TestRestSharpGetDto.success">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.TestRestSharpGetDto.data">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.TestRestSharpPostDto">
+            <summary>
+            用来测试 RestSharp Post 请求
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.TopgbViewModels">
+            <summary>
+            留言排名展示类
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.TopgbViewModels.blogId">
+            <summary>博客ID
+            
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.TopgbViewModels.counts">
+            <summary>
+            评论数量
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.TopgbViewModels.btitle">
+            <summary>博客标题
+            
+            </summary>
+        </member>
+    </members>
+</doc>
