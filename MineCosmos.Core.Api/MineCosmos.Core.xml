@@ -363,6 +363,17 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="T:MineCosmos.Core.Controllers.PlayerController">
+            <summary>
+            Minecraft插件接口
+            </summary>
+        </member>
+        <member name="M:MineCosmos.Core.Controllers.PlayerController.Get">
+            <summary>
+            健康检查接口
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:MineCosmos.Core.Controllers.ModuleController">
             <summary>
             接口管理

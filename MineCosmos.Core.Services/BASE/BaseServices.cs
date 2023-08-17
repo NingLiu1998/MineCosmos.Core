@@ -19,7 +19,7 @@ namespace MineCosmos.Core.Services.BASE
     /// *所以这里约束了TEntity为RootEntityTkey，同时增加调用便利性
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
-    public class BaseServices<TEntity> : IBaseServices<TEntity> where TEntity : RootEntityTkey<int>, new()
+    public class BaseServices<TEntity> : IBaseServices<TEntity> where TEntity : class, new()
     {
         public IBaseRepository<TEntity> BaseDal { get; set; }//通过在子类的构造函数中注入，这里是基类，不用构造函数
 
