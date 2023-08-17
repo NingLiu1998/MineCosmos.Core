@@ -37,5 +37,5 @@ RUN echo 'Asia/Shanghai' >/etc/timezone
         #&& supervisord -c /etc/supervisord.conf
 WORKDIR /app
 COPY . . 
-EXPOSE 9291 
+EXPOSE 80 
 ENTRYPOINT ["dotnet", "MineCosmos.Core.Api.dll","-b","0.0.0.0"]
