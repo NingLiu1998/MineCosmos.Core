@@ -100,8 +100,6 @@ namespace MineCosmos.Core.Tests
         {
             BlogArticle blogArticle = new BlogArticle()
             {
-                bCreateTime = DateTime.Now,
-                bUpdateTime = DateTime.Now,
                 Title = "xuint :test controller addEntity",
                 Content = "xuint :test controller addEntity. this is content.this is content."
             };
@@ -120,8 +118,6 @@ namespace MineCosmos.Core.Tests
         {
             BlogArticle blogArticle = new BlogArticle()
             {
-                bCreateTime = DateTime.Now,
-                bUpdateTime = DateTime.Now,
                 Title = "xuint :test controller addEntity",
                 Content = "xuint :test controller addEntity. this is content.this is content."
             };
@@ -141,8 +137,6 @@ namespace MineCosmos.Core.Tests
             BlogArticle blogArticle = new BlogArticle()
             {
                 Id = 1,
-                bCreateTime = DateTime.Now,
-                bUpdateTime = DateTime.Now,
                 Title = "xuint put :test controller addEntity",
                 Content = "xuint put :test controller addEntity. this is content.this is content."
             };

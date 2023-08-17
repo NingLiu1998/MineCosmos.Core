@@ -36,8 +36,6 @@ namespace MineCosmos.Core.Tests
         {
             BlogArticle blogArticle = new BlogArticle()
             {
-                bCreateTime = DateTime.Now,
-                bUpdateTime = DateTime.Now,
                 Title = "xuint test title",
                 Content = "xuint test content",
                 Submitter = "xuint： test repositoryBase add blog",
@@ -57,8 +55,6 @@ namespace MineCosmos.Core.Tests
             Assert.NotNull(updateModel);
 
             updateModel.Content = "xuint: test repositoryBase content update";
-            updateModel.bCreateTime = DateTime.Now;
-            updateModel.bUpdateTime = DateTime.Now;
 
             IsUpd = await baseRepository.Update(updateModel);
 

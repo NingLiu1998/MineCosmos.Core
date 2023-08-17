@@ -45,8 +45,6 @@ namespace MineCosmos.Core.Tests
         {
             BlogArticle blogArticle = new BlogArticle()
             {
-                bCreateTime = DateTime.Now,
-                bUpdateTime = DateTime.Now,
                 Title = "xuint test title",
                 Content = "xuint test content",
                 Submitter = "xuint test submitter",
