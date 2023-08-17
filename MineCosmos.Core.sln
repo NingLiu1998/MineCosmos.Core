@@ -57,8 +57,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ocelot.Provider.Nacos", "Oc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pack包加密研究", "pack包加密研究\pack包加密研究.csproj", "{B0F6C506-5B9C-4BF2-A6DD-6CAF4CC4D417}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{494576F1-952D-4414-8039-B5BC8CF2728C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,10 +119,6 @@ Global
 		{B0F6C506-5B9C-4BF2-A6DD-6CAF4CC4D417}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0F6C506-5B9C-4BF2-A6DD-6CAF4CC4D417}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0F6C506-5B9C-4BF2-A6DD-6CAF4CC4D417}.Release|Any CPU.Build.0 = Release|Any CPU
-		{494576F1-952D-4414-8039-B5BC8CF2728C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{494576F1-952D-4414-8039-B5BC8CF2728C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{494576F1-952D-4414-8039-B5BC8CF2728C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{494576F1-952D-4414-8039-B5BC8CF2728C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -136,7 +130,6 @@ Global
 		{A11C0DF2-1E13-4EED-BA49-44A57136B189} = {E2BD7D4D-9ED5-41CD-8401-C3FB26F203BB}
 		{6463FB13-5F01-4A1D-8B62-A454FB3812EB} = {E2BD7D4D-9ED5-41CD-8401-C3FB26F203BB}
 		{B0F6C506-5B9C-4BF2-A6DD-6CAF4CC4D417} = {EDA8901E-541E-4ADC-B71E-59697D5F9549}
-		{494576F1-952D-4414-8039-B5BC8CF2728C} = {EDA8901E-541E-4ADC-B71E-59697D5F9549}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB40D0C5-E3EA-4A9B-86C2-38F0BB33FC04}
