@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MineCosmos.Core.Api.Filter;
 using MineCosmos.Core.IRepository.Base;
+using MineCosmos.Core.IServices.Minecraft;
 using MineCosmos.Core.Model.Models;
 using Newtonsoft.Json.Linq;
 
@@ -17,9 +18,11 @@ namespace MineCosmos.Core.Controllers
     {
 
         readonly IBaseRepository<MinecraftPlayer> _mcPlayerRepostiory;
-        public MinecraftController(IBaseRepository<MinecraftPlayer> mcPlayerRepository)
+        readonly IWareHouseService _wareHouseService;
+        public MinecraftController(IBaseRepository<MinecraftPlayer> mcPlayerRepository, IWareHouseService wareHouseService)
         {
             _mcPlayerRepostiory = mcPlayerRepository;
+            _wareHouseService = wareHouseService;
         }
 
         /// <summary>
@@ -41,23 +44,50 @@ namespace MineCosmos.Core.Controllers
         {
 
             bool hasPlayer = await _mcPlayerRepostiory.AnyAsync(a => a.UUID == model.UUID);
-            if(hasPlayer)
+
+            PlayerWareHouse playerWareHouseDefault = new()
             {
-                MinecraftPlayer player = await _mcPlayerRepostiory.GetAsync(a => a.UUID == model.UUID);
-                
-                //TODO 存到玩家默认仓库，注意考虑仓库空间上限
+                Name = $"{model.Name}的默认仓库",
+                Remark = "接受MC服务器传递的物品数据时，自动创建",
+                Type = PlayerWareHouseTypeEnum.默认仓库,
+                UpperLimit = 100
+            };
+
+
+            MinecraftPlayer player = new();
+
+            if (hasPlayer)
+            {
+                player = await _mcPlayerRepostiory.GetAsync(a => a.UUID == model.UUID);
+
             }
             else
             {
                 //直接创建用户 TODO:单独service封装
-                MinecraftPlayer player = new MinecraftPlayer()
+                player = new MinecraftPlayer()
                 {
                     UUID = model.UUID,
-                    Name = model.Source,
+                    Name = model.Name,
                     LastServerLoginTime = DateTime.Now
                 };
-                await _mcPlayerRepostiory.Add(player);
+                player.Id = await _mcPlayerRepostiory.Add(player);
             }
+            playerWareHouseDefault.PlayerId = player.Id;
+            PlayerWareHouse wareHouse = await _wareHouseService.AutoCreateDefaultWareHouseAsync(new()
+            {
+                 WareHouse = playerWareHouseDefault,
+                Items = new List<PlayerWareHouseItem>
+                 {
+                      new PlayerWareHouseItem (){
+                       ItemData= model.Source,
+                       ItemType = WareHouseItemTypeEnum.插件
+                      }
+                 }
+            });
+
+
+
+
 
             return @model.Source;
         }
@@ -66,6 +96,7 @@ namespace MineCosmos.Core.Controllers
         {
             public string Source { get; set; }
             public string UUID { get; set; }
+            public string Name { get; set; }
             public string SourceVersion { get; set; }
             public string ApiKey { get; set; }
         }

@@ -220,5 +220,8 @@ namespace MineCosmos.Core.IRepository.Base
             int pageSize = 20,
             string orderByFields = null);
         Task<bool> AnyAsync(Expression<Func<TEntity, bool>> whereExpression);
+        Task<TEntity> InsertReturnEntity(TEntity entity);
+        Task<int> CountAsync(Expression<Func<TEntity, bool>> whereExpression);
+        List<TEntity> GetListAsync(Expression<Func<TEntity, bool>> whereExpression);
     }
 }

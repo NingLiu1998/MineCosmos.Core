@@ -85,9 +85,9 @@ namespace MineCosmos.Core.Controllers
             #region MyRegion
 
             // 这里可以封装到多表查询，此处简单处理
-            var allUserRoles = await _userRoleServices.Query(d => d.IsDeleted == false);
-            var allRoles = await _roleServices.Query(d => d.IsDeleted == false);
-            var allDepartments = await _departmentServices.Query(d => d.IsDeleted == false);
+            var allUserRoles = await _userRoleServices.GetListAsync(d => d.IsDeleted == false);
+            var allRoles = await _roleServices.GetListAsync(d => d.IsDeleted == false);
+            var allDepartments = await _departmentServices.GetListAsync(d => d.IsDeleted == false);
 
             var sysUserInfos = data.data;
             foreach (var item in sysUserInfos)
@@ -217,7 +217,7 @@ namespace MineCosmos.Core.Controllers
 
                 _unitOfWorkManage.BeginTran();
                 // 无论 Update Or Add , 先删除当前用户的全部 U_R 关系
-                var usreroles = (await _userRoleServices.Query(d => d.UserId == oldUser.Id));
+                var usreroles = (await _userRoleServices.GetListAsync(d => d.UserId == oldUser.Id));
                 if (usreroles.Any())
                 {
                     var ids = usreroles.Select(d => d.Id.ToString()).ToArray();

@@ -34,7 +34,7 @@ namespace MineCosmos.Core.IServices.BASE
 
         Task<List<TEntity>> Query();
         Task<List<TEntity>> Query(string where);
-        Task<List<TEntity>> Query(Expression<Func<TEntity, bool>> whereExpression);
+        Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> whereExpression);
         Task<List<TEntity>> Query(Expression<Func<TEntity, bool>> whereExpression, string orderByFields);
         Task<List<TResult>> Query<TResult>(Expression<Func<TEntity, TResult>> expression);
         Task<List<TResult>> Query<TResult>(Expression<Func<TEntity, TResult>> expression, Expression<Func<TEntity, bool>> whereExpression, string orderByFields);

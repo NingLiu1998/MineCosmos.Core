@@ -49,11 +49,56 @@ namespace MineCosmos.Core.Repository.Base
 
         public ISqlSugarClient Db => _db;
 
+        /// <summary>
+        /// 实体集合
+        /// </summary>
+        public virtual ISugarQueryable<TEntity> Entities => _db.Queryable<TEntity>();
+
         public BaseRepository(IUnitOfWorkManage unitOfWorkManage)
         {
             _unitOfWorkManage = unitOfWorkManage;
             _dbBase = unitOfWorkManage.GetDbClient();
         }
+
+        #region 查询
+
+        /// <summary>
+        /// 获取总数
+        /// </summary>
+        /// <param name="whereExpression"></param>
+        /// <returns></returns>
+        public Task<int> CountAsync(Expression<Func<TEntity, bool>> whereExpression)
+        {
+            return Entities.CountAsync(whereExpression);
+        }
+
+        /// <summary>
+        /// 获取列表
+        /// </summary>
+        /// <param name="whereExpression"></param>
+        /// <returns></returns>
+        public List<TEntity> GetListAsync(Expression<Func<TEntity, bool>> whereExpression)
+        {
+            return Entities.Where(whereExpression).ToList();
+        }
+
+        #endregion
+
+        #region 新增
+
+        /// <summary>
+        /// 新增一条记录返回实体
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public virtual async Task<TEntity> InsertReturnEntity(TEntity entity)
+        {
+            return await _db.Insertable(entity).ExecuteReturnEntityAsync();
+        }
+
+        #endregion
+
+
 
 
 

@@ -15,13 +15,25 @@ namespace MineCosmos.Core.Services.BASE
     /// <summary>
     /// Services基类实现
     /// *这里主要是提供了一些便捷调用仓储的方法
+    /// TODO:添加数据库父类约束
     /// *因为本项目的所有实体都继承了RootEntityTkey
-    /// *所以这里约束了TEntity为RootEntityTkey，同时增加调用便利性
+    /// *所以这里约束了TEntity为RootEntityTkey，同时增加调用便利性 
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     public class BaseServices<TEntity> : IBaseServices<TEntity> where TEntity : class, new()
     {
         public IBaseRepository<TEntity> BaseDal { get; set; }//通过在子类的构造函数中注入，这里是基类，不用构造函数
+
+
+        #region 新增
+
+        public async Task<TEntity> InsertReturnEntity(TEntity model)
+        {
+            return await BaseDal.InsertReturnEntity(model);
+        }
+
+        #endregion
+
 
         public async Task<TEntity> QueryById(object objId)
         {
@@ -159,10 +171,17 @@ namespace MineCosmos.Core.Services.BASE
         /// </summary>
         /// <param name="whereExpression">whereExpression</param>
         /// <returns>数据列表</returns>
-        public async Task<List<TEntity>> Query(Expression<Func<TEntity, bool>> whereExpression)
+        public async Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> whereExpression)
         {
             return await BaseDal.Query(whereExpression);
         }
+
+        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> whereExpression)
+        {
+            return await BaseDal.GetAsync(whereExpression);
+        }
+
+        
 
         /// <summary>
         /// 功能描述:按照特定列查询数据列表

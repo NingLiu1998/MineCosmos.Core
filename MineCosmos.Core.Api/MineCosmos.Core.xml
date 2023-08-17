@@ -374,6 +374,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:MineCosmos.Core.Controllers.PlayerController.GetPlayerWareHouse(System.Int32)">
+            <summary>
+            获取玩家所有仓库包括物品的信息
+            </summary>
+            <param name="playerId">玩家ID</param>
+            <returns></returns>
+        </member>
         <member name="T:MineCosmos.Core.Controllers.ModuleController">
             <summary>
             接口管理

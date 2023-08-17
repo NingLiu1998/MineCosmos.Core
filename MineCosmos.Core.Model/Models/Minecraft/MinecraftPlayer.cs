@@ -47,14 +47,17 @@ namespace MineCosmos.Core.Model.Models
         /// <summary>
         /// 最后网页登录时间
         /// </summary>
+        [SugarColumn(IsNullable = true)]
         public DateTime? LastWebLoginTime { get; set; }
         /// <summary>
         /// 最后进服时间
         /// </summary>
+        [SugarColumn(IsNullable = true)]
         public DateTime? LastServerLoginTime { get; set; }
         /// <summary>
         /// Kook最后登录时间
         /// </summary>
+        [SugarColumn(IsNullable = true)]
         public DateTime? LastLoginKookTime { get; set; }
     }
 }

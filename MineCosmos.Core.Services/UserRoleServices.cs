@@ -24,7 +24,7 @@ namespace MineCosmos.Core.Services
             UserRole userRole = new UserRole(uid, rid);
 
             UserRole model = new UserRole();
-            var userList = await base.Query(a => a.UserId == userRole.UserId && a.RoleId == userRole.RoleId);
+            var userList = await base.GetListAsync(a => a.UserId == userRole.UserId && a.RoleId == userRole.RoleId);
             if (userList.Count > 0)
             {
                 model = userList.FirstOrDefault();
@@ -44,7 +44,7 @@ namespace MineCosmos.Core.Services
         [Caching(AbsoluteExpiration = 30)]
         public async Task<int> GetRoleIdByUid(int uid)
         {
-            return ((await base.Query(d => d.UserId == uid)).OrderByDescending(d => d.Id).LastOrDefault()?.RoleId).ObjToInt();
+            return ((await base.GetListAsync(d => d.UserId == uid)).OrderByDescending(d => d.Id).LastOrDefault()?.RoleId).ObjToInt();
         }
     }
 }

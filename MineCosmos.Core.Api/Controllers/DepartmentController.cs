@@ -73,7 +73,7 @@ namespace MineCosmos.Core.Api.Controllers
         public async Task<MessageModel<List<Department>>> GetTreeTable(long f = 0, string key = "")
         {
             List<Department> departments = new List<Department>();
-            var departmentList = await _departmentServices.Query(d => d.IsDeleted == false);
+            var departmentList = await _departmentServices.GetListAsync(d => d.IsDeleted == false);
             if (string.IsNullOrEmpty(key) || string.IsNullOrWhiteSpace(key))
             {
                 key = "";
@@ -118,7 +118,7 @@ namespace MineCosmos.Core.Api.Controllers
         [HttpGet]
         public async Task<MessageModel<DepartmentTree>> GetDepartmentTree(int pid = 0)
         {
-            var departments = await _departmentServices.Query(d => d.IsDeleted == false);
+            var departments = await _departmentServices.GetListAsync(d => d.IsDeleted == false);
             var departmentTrees = (from child in departments
                                    where child.IsDeleted == false
                                    orderby child.Id
@@ -204,7 +204,7 @@ namespace MineCosmos.Core.Api.Controllers
                     DateFormatHandling = DateFormatHandling.MicrosoftDateFormat
                 };
 
-                var rolesJson = JsonConvert.SerializeObject(await _departmentServices.Query(d => d.IsDeleted == false), microsoftDateFormatSettings);
+                var rolesJson = JsonConvert.SerializeObject(await _departmentServices.GetListAsync(d => d.IsDeleted == false), microsoftDateFormatSettings);
                 FileHelper.WriteFile(Path.Combine(_env.WebRootPath, "BlogCore.Data.json", "Department_New.tsv"), rolesJson, Encoding.UTF8);
 
                 data.success = true;

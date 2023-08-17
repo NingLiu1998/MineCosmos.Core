@@ -37,7 +37,7 @@ namespace MineCosmos.Core.Services
         [Caching(AbsoluteExpiration = 10)]
         public async Task<List<RoleModulePermission>> GetRoleModule()
         {
-            var roleModulePermissions = await base.Query(a => a.IsDeleted == false);
+            var roleModulePermissions = await base.GetListAsync(a => a.IsDeleted == false);
             var roles = await _roleRepository.Query(a => a.IsDeleted == false);
             var modules = await _moduleRepository.Query(a => a.IsDeleted == false);
 

@@ -59,7 +59,7 @@ namespace MineCosmos.Core.Tasks
 
             foreach (var item in activeUsers)
             {
-                var user = (await _accessTrendLogServices.Query(d => d.User != "" && d.User == item.user)).FirstOrDefault();
+                var user = (await _accessTrendLogServices.GetListAsync(d => d.User != "" && d.User == item.user)).FirstOrDefault();
                 if (user != null)
                 {
                     user.Count += item.count;

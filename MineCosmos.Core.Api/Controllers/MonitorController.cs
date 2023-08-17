@@ -228,7 +228,7 @@ namespace MineCosmos.Core.Controllers
 
             if (AppSettings.app(new string[] { "MutiDBEnabled" }).ObjToBool())
             {
-                var users = await _applicationUserServices.Query(d => d.tdIsDelete == false);
+                var users = await _applicationUserServices.GetListAsync(d => d.tdIsDelete == false);
 
                 apiDates = (from n in users
                             group n by new { n.birth.Date } into g

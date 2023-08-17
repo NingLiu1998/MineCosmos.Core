@@ -27,7 +27,7 @@ namespace MineCosmos.Core.Services
         {
             // 此处想获取上一条下一条数据，因此将全部数据list出来，有好的想法请提出
             //var bloglist = await base.Query(a => a.IsDeleted==false, a => a.bID);
-            var blogArticle = (await base.Query(a => a.Id == id && a.Category == "技术博文")).FirstOrDefault();
+            var blogArticle = (await base.GetListAsync(a => a.Id == id && a.Category == "技术博文")).FirstOrDefault();
 
             BlogViewModels models = null;
 

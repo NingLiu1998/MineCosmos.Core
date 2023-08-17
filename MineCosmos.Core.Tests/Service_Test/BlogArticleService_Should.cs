@@ -60,7 +60,7 @@ namespace MineCosmos.Core.Tests
         {
             Add_Blog_Test();
 
-            var deleteModel = (await blogArticleServices.Query(d => d.Title == "xuint test title")).FirstOrDefault();
+            var deleteModel = (await blogArticleServices.GetListAsync(d => d.Title == "xuint test title")).FirstOrDefault();
 
             Assert.NotNull(deleteModel);
 

@@ -29,7 +29,7 @@ namespace MineCosmos.Core.FrameWork.Services
         {
             SysUserInfo sysUserInfo = new SysUserInfo(loginName, loginPwd);
             SysUserInfo model = new SysUserInfo();
-            var userList = await base.Query(a => a.LoginName == sysUserInfo.LoginName && a.LoginPWD == sysUserInfo.LoginPWD);
+            var userList = await base.GetListAsync(a => a.LoginName == sysUserInfo.LoginName && a.LoginPWD == sysUserInfo.LoginPWD);
             if (userList.Count > 0)
             {
                 model = userList.FirstOrDefault();
@@ -53,7 +53,7 @@ namespace MineCosmos.Core.FrameWork.Services
         public async Task<string> GetUserRoleNameStr(string loginName, string loginPwd)
         {
             string roleName = "";
-            var user = (await base.Query(a => a.LoginName == loginName && a.LoginPWD == loginPwd)).FirstOrDefault();
+            var user = (await base.GetListAsync(a => a.LoginName == loginName && a.LoginPWD == loginPwd)).FirstOrDefault();
             var roleList = await _roleRepository.Query(a => a.IsDeleted == false);
             if (user != null)
             {

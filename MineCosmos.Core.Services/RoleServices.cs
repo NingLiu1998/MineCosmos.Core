@@ -22,7 +22,7 @@ namespace MineCosmos.Core.Services
         {
             Role role = new Role(roleName);
             Role model = new Role();
-            var userList = await base.Query(a => a.Name == role.Name && a.Enabled);
+            var userList = await base.GetListAsync(a => a.Name == role.Name && a.Enabled);
             if (userList.Count > 0)
             {
                 model = userList.FirstOrDefault();

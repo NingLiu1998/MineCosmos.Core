@@ -546,9 +546,19 @@
             玩家仓库
             </summary>
         </member>
+        <member name="P:MineCosmos.Core.Model.Models.PlayerWareHouse.Name">
+            <summary>
+            仓库名称
+            </summary>
+        </member>
         <member name="P:MineCosmos.Core.Model.Models.PlayerWareHouse.PlayerId">
             <summary>
             玩家ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.Models.PlayerWareHouse.Type">
+            <summary>
+            类型
             </summary>
         </member>
         <member name="P:MineCosmos.Core.Model.Models.PlayerWareHouse.UpperLimit">
@@ -1305,6 +1315,21 @@
         <member name="P:MineCosmos.Core.Model.ViewModels.GuestbookViewModels.isshow">
             <summary>是否显示在前台,0否1是
             
+            </summary>
+        </member>
+        <member name="T:MineCosmos.Core.Model.ViewModels.Minecraft.PlayerWareHouseCreateDto">
+            <summary>
+            新增仓库Dto
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.Minecraft.PlayerWareHouseCreateDto.WareHouse">
+            <summary>
+            仓库
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.Minecraft.PlayerWareHouseCreateDto.Items">
+            <summary>
+            物品
             </summary>
         </member>
         <member name="P:MineCosmos.Core.Model.ViewModels.PayModel.MERCHANTID">

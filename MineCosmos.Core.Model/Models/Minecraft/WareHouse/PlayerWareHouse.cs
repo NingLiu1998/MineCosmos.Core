@@ -7,11 +7,23 @@ namespace MineCosmos.Core.Model.Models;
 /// </summary>
 public class PlayerWareHouse : RootEntityTkey<int>
 {
+
+    /// <summary>
+    /// 仓库名称
+    /// </summary>
+    public string Name { get; set; }
+
     /// <summary>
     /// 玩家ID
     /// </summary>
     [SugarColumn(IsNullable = false)]
     public int PlayerId { get; set; }
+
+    /// <summary>
+    /// 类型
+    /// </summary>
+    [SugarColumn(IsNullable = false)]
+    public PlayerWareHouseTypeEnum Type { get; set; }
 
     /// <summary>
     ///  上限（栏位）
@@ -31,5 +43,12 @@ public class PlayerWareHouse : RootEntityTkey<int>
     [SugarColumn(IsNullable = true)]
     public int MaterialId { get; set; }
 
+}
+
+public enum PlayerWareHouseTypeEnum
+{
+    默认仓库= 1,
+    普通仓库 =2,
+    临时仓库= 3
 }
 

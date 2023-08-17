@@ -69,8 +69,8 @@ namespace MineCosmos.Core.Controllers
             {
                 try
                 {
-                    var apiList = await _moduleServices.Query(d => d.IsDeleted == false);
-                    var permissionsAllList = await _permissionServices.Query(d => d.IsDeleted == false);
+                    var apiList = await _moduleServices.GetListAsync(d => d.IsDeleted == false);
+                    var permissionsAllList = await _permissionServices.GetListAsync(d => d.IsDeleted == false);
                     var permissions = permissionsAllList.Where(d => d.Pid == 0).ToList();
                     var rmps = await _roleModulePermissionServices.GetRMPMaps();
                     List<PM> pms = new();
@@ -104,7 +104,7 @@ namespace MineCosmos.Core.Controllers
                         // 角色信息，防止重复添加，做了判断
                         if (item.Role != null)
                         {
-                            var isExit = (await _roleServices.Query(d => d.Name == item.Role.Name && d.IsDeleted == false)).FirstOrDefault();
+                            var isExit = (await _roleServices.GetListAsync(d => d.Name == item.Role.Name && d.IsDeleted == false)).FirstOrDefault();
                             if (isExit == null)
                             {
                                 rid = await _roleServices.Add(item.Role);
@@ -172,28 +172,28 @@ namespace MineCosmos.Core.Controllers
                 };
 
                 // 取出数据，序列化，自己可以处理判空
-                var SysUserInfoJson = JsonConvert.SerializeObject(await _sysUserInfoServices.Query(d => d.IsDeleted == false), microsoftDateFormatSettings);
+                var SysUserInfoJson = JsonConvert.SerializeObject(await _sysUserInfoServices.GetListAsync(d => d.IsDeleted == false), microsoftDateFormatSettings);
                 FileHelper.WriteFile(Path.Combine(_env.WebRootPath, "BlogCore.Data.json", "SysUserInfo.tsv"), SysUserInfoJson, Encoding.UTF8);
 
-                var DepartmentJson = JsonConvert.SerializeObject(await _departmentServices.Query(d => d.IsDeleted == false), microsoftDateFormatSettings);
+                var DepartmentJson = JsonConvert.SerializeObject(await _departmentServices.GetListAsync(d => d.IsDeleted == false), microsoftDateFormatSettings);
                 FileHelper.WriteFile(Path.Combine(_env.WebRootPath, "BlogCore.Data.json", "Department.tsv"), DepartmentJson, Encoding.UTF8);
 
-                var rolesJson = JsonConvert.SerializeObject(await _roleServices.Query(d => d.IsDeleted == false), microsoftDateFormatSettings);
+                var rolesJson = JsonConvert.SerializeObject(await _roleServices.GetListAsync(d => d.IsDeleted == false), microsoftDateFormatSettings);
                 FileHelper.WriteFile(Path.Combine(_env.WebRootPath, "BlogCore.Data.json", "Role.tsv"), rolesJson, Encoding.UTF8);
 
-                var UserRoleJson = JsonConvert.SerializeObject(await _userRoleServices.Query(d => d.IsDeleted == false), microsoftDateFormatSettings);
+                var UserRoleJson = JsonConvert.SerializeObject(await _userRoleServices.GetListAsync(d => d.IsDeleted == false), microsoftDateFormatSettings);
                 FileHelper.WriteFile(Path.Combine(_env.WebRootPath, "BlogCore.Data.json", "UserRole.tsv"), UserRoleJson, Encoding.UTF8);
 
 
-                var permissionsJson = JsonConvert.SerializeObject(await _permissionServices.Query(d => d.IsDeleted == false), microsoftDateFormatSettings);
+                var permissionsJson = JsonConvert.SerializeObject(await _permissionServices.GetListAsync(d => d.IsDeleted == false), microsoftDateFormatSettings);
                 FileHelper.WriteFile(Path.Combine(_env.WebRootPath, "BlogCore.Data.json", "Permission.tsv"), permissionsJson, Encoding.UTF8);
 
 
-                var modulesJson = JsonConvert.SerializeObject(await _moduleServices.Query(d => d.IsDeleted == false), microsoftDateFormatSettings);
+                var modulesJson = JsonConvert.SerializeObject(await _moduleServices.GetListAsync(d => d.IsDeleted == false), microsoftDateFormatSettings);
                 FileHelper.WriteFile(Path.Combine(_env.WebRootPath, "BlogCore.Data.json", "Modules.tsv"), modulesJson, Encoding.UTF8);
 
 
-                var rmpsJson = JsonConvert.SerializeObject(await _roleModulePermissionServices.Query(d => d.IsDeleted == false), microsoftDateFormatSettings);
+                var rmpsJson = JsonConvert.SerializeObject(await _roleModulePermissionServices.GetListAsync(d => d.IsDeleted == false), microsoftDateFormatSettings);
                 FileHelper.WriteFile(Path.Combine(_env.WebRootPath, "BlogCore.Data.json", "RoleModulePermission.tsv"), rmpsJson, Encoding.UTF8);
 
 
@@ -229,31 +229,31 @@ namespace MineCosmos.Core.Controllers
 
                 // 取出数据，序列化，自己可以处理判空
                 IExporter exporter = new ExcelExporter();
-                var SysUserInfoList = await _sysUserInfoServices.Query(d => d.IsDeleted == false);
+                var SysUserInfoList = await _sysUserInfoServices.GetListAsync(d => d.IsDeleted == false);
                 var result = await exporter.ExportAsByteArray(SysUserInfoList);
                 FileHelper.WriteFile(Path.Combine(_env.WebRootPath, "BlogCore.Data.excel", "SysUserInfo.xlsx"), result);
 
-                var DepartmentList = await _departmentServices.Query(d => d.IsDeleted == false);
+                var DepartmentList = await _departmentServices.GetListAsync(d => d.IsDeleted == false);
                 var DepartmentResult = await exporter.ExportAsByteArray(DepartmentList);
                 FileHelper.WriteFile(Path.Combine(_env.WebRootPath, "BlogCore.Data.excel", "Department.xlsx"), DepartmentResult);
 
-                var RoleList = await _roleServices.Query(d => d.IsDeleted == false);
+                var RoleList = await _roleServices.GetListAsync(d => d.IsDeleted == false);
                 var RoleResult = await exporter.ExportAsByteArray(RoleList);
                 FileHelper.WriteFile(Path.Combine(_env.WebRootPath, "BlogCore.Data.excel", "Role.xlsx"), RoleResult);
 
-                var UserRoleList = await _userRoleServices.Query(d => d.IsDeleted == false);
+                var UserRoleList = await _userRoleServices.GetListAsync(d => d.IsDeleted == false);
                 var UserRoleResult = await exporter.ExportAsByteArray(UserRoleList);
                 FileHelper.WriteFile(Path.Combine(_env.WebRootPath, "BlogCore.Data.excel", "UserRole.xlsx"), UserRoleResult);
 
-                var PermissionList = await _permissionServices.Query(d => d.IsDeleted == false);
+                var PermissionList = await _permissionServices.GetListAsync(d => d.IsDeleted == false);
                 var PermissionResult = await exporter.ExportAsByteArray(PermissionList);
                 FileHelper.WriteFile(Path.Combine(_env.WebRootPath, "BlogCore.Data.excel", "Permission.xlsx"), PermissionResult);
 
-                var ModulesList = await _moduleServices.Query(d => d.IsDeleted == false);
+                var ModulesList = await _moduleServices.GetListAsync(d => d.IsDeleted == false);
                 var ModulesResult = await exporter.ExportAsByteArray(ModulesList);
                 FileHelper.WriteFile(Path.Combine(_env.WebRootPath, "BlogCore.Data.excel", "Modules.xlsx"), ModulesResult);
 
-                var RoleModulePermissionList = await _roleModulePermissionServices.Query(d => d.IsDeleted == false);
+                var RoleModulePermissionList = await _roleModulePermissionServices.GetListAsync(d => d.IsDeleted == false);
                 var RoleModulePermissionResult = await exporter.ExportAsByteArray(RoleModulePermissionList);
                 FileHelper.WriteFile(Path.Combine(_env.WebRootPath, "BlogCore.Data.excel", "RoleModulePermission.xlsx"), RoleModulePermissionResult);
 
@@ -308,7 +308,7 @@ namespace MineCosmos.Core.Controllers
                 // 接口
                 if (item.Module != null)
                 {
-                    var moduleModel = (await _moduleServices.Query(d => d.LinkUrl == item.Module.LinkUrl)).FirstOrDefault();
+                    var moduleModel = (await _moduleServices.GetListAsync(d => d.LinkUrl == item.Module.LinkUrl)).FirstOrDefault();
                     if (moduleModel != null)
                     {
                         mid = moduleModel.Id;
@@ -323,7 +323,7 @@ namespace MineCosmos.Core.Controllers
                 // 菜单
                 if (item != null)
                 {
-                    var permissionModel = (await _permissionServices.Query(d => d.Name == item.Name && d.Pid == item.Pid && d.Mid == item.Mid)).FirstOrDefault();
+                    var permissionModel = (await _permissionServices.GetListAsync(d => d.Name == item.Name && d.Pid == item.Pid && d.Mid == item.Mid)).FirstOrDefault();
                     item.Pid = parendId;
                     item.Mid = mid;
                     if (permissionModel != null)

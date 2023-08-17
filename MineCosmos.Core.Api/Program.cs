@@ -50,7 +50,15 @@ builder.Host
     config.AddConfigurationApollo("appsettings.apollo.json");
 });
 
+#if DEBUG
+
+builder.Host.UseAgileConfig(new ConfigClient($"appsettings.agileconfig.debug.json"));
+
+#else
+
 builder.Host.UseAgileConfig(new ConfigClient($"appsettings.agileconfig.json"));
+
+#endif
 
 
 

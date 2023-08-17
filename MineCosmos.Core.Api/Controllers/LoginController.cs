@@ -152,7 +152,7 @@ namespace MineCosmos.Core.Controllers
 
             pass = MD5Helper.MD5Encrypt32(pass);
 
-            var user = await _sysUserInfoServices.Query(d => d.LoginName == name && d.LoginPWD == pass && d.IsDeleted == false);
+            var user = await _sysUserInfoServices.GetListAsync(d => d.LoginName == name && d.LoginPWD == pass && d.IsDeleted == false);
             if (user.Count > 0)
             {
                 var userRoles = await _sysUserInfoServices.GetUserRoleNameStr(name, pass);

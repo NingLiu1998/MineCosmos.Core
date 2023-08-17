@@ -37,7 +37,7 @@ namespace MineCosmos.Core.Controllers
                 returnMsg.Add($"Begin Transaction");
 
                 _unitOfWorkManage.BeginTran();
-                var passwords = await _passwordLibServices.Query(d => d.IsDeleted == false);
+                var passwords = await _passwordLibServices.GetListAsync(d => d.IsDeleted == false);
                 returnMsg.Add($"first time : the count of passwords is :{passwords.Count}");
 
 
@@ -50,7 +50,7 @@ namespace MineCosmos.Core.Controllers
                 });
 
 
-                passwords = await _passwordLibServices.Query(d => d.IsDeleted == false);
+                passwords = await _passwordLibServices.GetListAsync(d => d.IsDeleted == false);
                 returnMsg.Add($"second time : the count of passwords is :{passwords.Count}");
                 returnMsg.Add($" ");
 

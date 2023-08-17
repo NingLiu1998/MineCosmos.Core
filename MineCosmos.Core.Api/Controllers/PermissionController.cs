@@ -93,10 +93,10 @@ namespace MineCosmos.Core.Controllers
 
             #region 单独处理
 
-            var apis = await _moduleServices.Query(d => d.IsDeleted == false);
+            var apis = await _moduleServices.GetListAsync(d => d.IsDeleted == false);
             var permissionsView = permissions.data;
 
-            var permissionAll = await _permissionServices.Query(d => d.IsDeleted != true);
+            var permissionAll = await _permissionServices.GetListAsync(d => d.IsDeleted != true);
             foreach (var item in permissionsView)
             {
                 List<int> pidarr = new List<int>
@@ -159,8 +159,8 @@ namespace MineCosmos.Core.Controllers
         public async Task<MessageModel<List<Permission>>> GetTreeTable(int f = 0, string key = "")
         {
             List<Permission> permissions = new List<Permission>();
-            var apiList = await _moduleServices.Query(d => d.IsDeleted == false);
-            var permissionsList = await _permissionServices.Query(d => d.IsDeleted == false);
+            var apiList = await _moduleServices.GetListAsync(d => d.IsDeleted == false);
+            var permissionsList = await _permissionServices.GetListAsync(d => d.IsDeleted == false);
             if (string.IsNullOrEmpty(key) || string.IsNullOrWhiteSpace(key))
             {
                 key = "";
@@ -243,7 +243,7 @@ namespace MineCosmos.Core.Controllers
             {
                 data.success = true;
 
-                var roleModulePermissions = await _roleModulePermissionServices.Query(d => d.RoleId == assignView.rid);
+                var roleModulePermissions = await _roleModulePermissionServices.GetListAsync(d => d.RoleId == assignView.rid);
 
                 var remove = roleModulePermissions.Where(d => !assignView.pids.Contains(d.PermissionId.ObjToInt())).Select(c => (object)c.Id);
                 data.success &= remove.Any() ? await _roleModulePermissionServices.DeleteByIds(remove.ToArray()) : true;
@@ -251,7 +251,7 @@ namespace MineCosmos.Core.Controllers
                 foreach (var item in assignView.pids)
                 {
                     var rmpitem = roleModulePermissions.Where(d => d.PermissionId == item);
-                    var moduleid = (await _permissionServices.Query(p => p.Id == item)).FirstOrDefault()?.Mid;
+                    var moduleid = (await _permissionServices.GetListAsync(p => p.Id == item)).FirstOrDefault()?.Mid;
                     if (!rmpitem.Any())
                     {
                         RoleModulePermission roleModulePermission = new RoleModulePermission()
@@ -301,7 +301,7 @@ namespace MineCosmos.Core.Controllers
         {
             //var data = new MessageModel<PermissionTree>();
 
-            var permissions = await _permissionServices.Query(d => d.IsDeleted == false);
+            var permissions = await _permissionServices.GetListAsync(d => d.IsDeleted == false);
             var permissionTrees = (from child in permissions
                                    where child.IsDeleted == false
                                    orderby child.Id
@@ -364,7 +364,7 @@ namespace MineCosmos.Core.Controllers
             {
                 // jwt
                 uidInHttpcontext1 = ((JwtHelper.SerializeJwt(_httpContext.HttpContext.Request.Headers["Authorization"].ObjToString().Replace("Bearer ", "")))?.Uid).ObjToInt();
-                roleIds = (await _userRoleServices.Query(d => d.IsDeleted == false && d.UserId == uid)).Select(d => d.RoleId.ObjToInt()).Distinct().ToList();
+                roleIds = (await _userRoleServices.GetListAsync(d => d.IsDeleted == false && d.UserId == uid)).Select(d => d.RoleId.ObjToInt()).Distinct().ToList();
             }
 
 
@@ -372,10 +372,10 @@ namespace MineCosmos.Core.Controllers
             {
                 if (roleIds.Any())
                 {
-                    var pids = (await _roleModulePermissionServices.Query(d => d.IsDeleted == false && roleIds.Contains(d.RoleId))).Select(d => d.PermissionId.ObjToInt()).Distinct();
+                    var pids = (await _roleModulePermissionServices.GetListAsync(d => d.IsDeleted == false && roleIds.Contains(d.RoleId))).Select(d => d.PermissionId.ObjToInt()).Distinct();
                     if (pids.Any())
                     {
-                        var rolePermissionMoudles = (await _permissionServices.Query(d => pids.Contains(d.Id))).OrderBy(c => c.OrderSort);
+                        var rolePermissionMoudles = (await _permissionServices.GetListAsync(d => pids.Contains(d.Id))).OrderBy(c => c.OrderSort);
                         var temp = rolePermissionMoudles.ToList().Find(t => t.Id == 87);
                         var permissionTrees = (from child in rolePermissionMoudles
                                                where child.IsDeleted == false
@@ -455,18 +455,18 @@ namespace MineCosmos.Core.Controllers
             {
                 // jwt
                 uidInHttpcontext1 = ((JwtHelper.SerializeJwt(_httpContext.HttpContext.Request.Headers["Authorization"].ObjToString().Replace("Bearer ", "")))?.Uid).ObjToInt();
-                roleIds = (await _userRoleServices.Query(d => d.IsDeleted == false && d.UserId == uid)).Select(d => d.RoleId.ObjToInt()).Distinct().ToList();
+                roleIds = (await _userRoleServices.GetListAsync(d => d.IsDeleted == false && d.UserId == uid)).Select(d => d.RoleId.ObjToInt()).Distinct().ToList();
             }
 
             if (uid > 0 && uid == uidInHttpcontext1)
             {
                 if (roleIds.Any())
                 {
-                    var pids = (await _roleModulePermissionServices.Query(d => d.IsDeleted == false && roleIds.Contains(d.RoleId)))
+                    var pids = (await _roleModulePermissionServices.GetListAsync(d => d.IsDeleted == false && roleIds.Contains(d.RoleId)))
                                     .Select(d => d.PermissionId.ObjToInt()).Distinct();
                     if (pids.Any())
                     {
-                        var rolePermissionMoudles = (await _permissionServices.Query(d => pids.Contains(d.Id) && d.IsButton == false)).OrderBy(c => c.OrderSort);
+                        var rolePermissionMoudles = (await _permissionServices.GetListAsync(d => pids.Contains(d.Id) && d.IsButton == false)).OrderBy(c => c.OrderSort);
                         var permissionTrees = (from item in rolePermissionMoudles
                                                where item.IsDeleted == false
                                                orderby item.Id
@@ -515,12 +515,12 @@ namespace MineCosmos.Core.Controllers
         {
             //var data = new MessageModel<AssignShow>();
 
-            var rmps = await _roleModulePermissionServices.Query(d => d.IsDeleted == false && d.RoleId == rid);
+            var rmps = await _roleModulePermissionServices.GetListAsync(d => d.IsDeleted == false && d.RoleId == rid);
             var permissionTrees = (from child in rmps
                                    orderby child.Id
                                    select child.PermissionId.ObjToInt()).ToList();
 
-            var permissions = await _permissionServices.Query(d => d.IsDeleted == false);
+            var permissions = await _permissionServices.GetListAsync(d => d.IsDeleted == false);
             List<string> assignbtns = new List<string>();
 
             foreach (var item in permissionTrees)
@@ -731,7 +731,7 @@ namespace MineCosmos.Core.Controllers
                 });
             }
 
-            var modulesList = (await _moduleServices.Query(d => d.IsDeleted == false && d.LinkUrl != null)).Select(d => d.LinkUrl.ToLower()).ToList();
+            var modulesList = (await _moduleServices.GetListAsync(d => d.IsDeleted == false && d.LinkUrl != null)).Select(d => d.LinkUrl.ToLower()).ToList();
             permissions = permissions.Where(d => !modulesList.Contains(d.Module.LinkUrl.ToLower()) && d.Module.LinkUrl.Contains($"/{controllerName}/")).ToList();
 
 
@@ -739,7 +739,7 @@ namespace MineCosmos.Core.Controllers
             {
                 foreach (var item in permissions)
                 {
-                    List<Modules> modules = await _moduleServices.Query(d => d.LinkUrl != null && d.LinkUrl.ToLower() == item.Module.LinkUrl);
+                    List<Modules> modules = await _moduleServices.GetListAsync(d => d.LinkUrl != null && d.LinkUrl.ToLower() == item.Module.LinkUrl);
                     if (!modules.Any())
                     {
                         int mid = await _moduleServices.Add(item.Module);
