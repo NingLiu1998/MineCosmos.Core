@@ -19,6 +19,8 @@ namespace MineCosmos.Core.Repository.Base
     /// <typeparam name="TEntity"></typeparam>
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class, new()
     {
+
+        private readonly string[] UpdateIgnoreColumns = new string[] { "CreatedTime", "CreatedUserId", "CreatedUserName" };
         private readonly IUnitOfWorkManage _unitOfWorkManage;
         private readonly SqlSugarScope _dbBase;
 
@@ -82,31 +84,15 @@ namespace MineCosmos.Core.Repository.Base
             return Entities.Where(whereExpression).ToList();
         }
 
-        #endregion
-
-        #region 新增
-
-        /// <summary>
-        /// 新增一条记录返回实体
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        public virtual async Task<TEntity> InsertReturnEntity(TEntity entity)
-        {
-            return await _db.Insertable(entity).ExecuteReturnEntityAsync();
-        }
-
-        #endregion
-
-
-
-
-
         public async Task<TEntity> QueryById(object objId)
         {
-            //return await Task.Run(() => _db.Queryable<TEntity>().InSingle(objId));
-            return await _db.Queryable<TEntity>().In(objId).SingleAsync();
+            return await Entities.InSingleAsync(objId);
         }
+
+        public async Task<TEntity> GetById(object objId) => await QueryById(objId);
+
+        public async Task<TEntity> GetById(object objId, bool blnUseCache = false) => await QueryById(objId, blnUseCache);
+
         /// <summary>
         /// 功能描述:根据ID查询一条数据
         /// 作　　者:MineCosmos.Core
@@ -116,7 +102,6 @@ namespace MineCosmos.Core.Repository.Base
         /// <returns>数据实体</returns>
         public async Task<TEntity> QueryById(object objId, bool blnUseCache = false)
         {
-            //return await Task.Run(() => _db.Queryable<TEntity>().WithCacheIF(blnUseCache).InSingle(objId));
             return await _db.Queryable<TEntity>().WithCacheIF(blnUseCache, 10).In(objId).SingleAsync();
         }
 
@@ -128,7 +113,6 @@ namespace MineCosmos.Core.Repository.Base
         /// <returns>数据实体列表</returns>
         public async Task<List<TEntity>> QueryByIDs(object[] lstIds)
         {
-            //return await Task.Run(() => _db.Queryable<TEntity>().In(lstIds).ToList());
             return await _db.Queryable<TEntity>().In(lstIds).ToListAsync();
         }
 
@@ -143,7 +127,7 @@ namespace MineCosmos.Core.Repository.Base
         }
 
         /// <summary>
-        /// 获取单个数据
+        /// 判断是否存在
         /// </summary>
         /// <param name="whereExpression"></param>
         /// <returns></returns>
@@ -152,6 +136,24 @@ namespace MineCosmos.Core.Repository.Base
             return await _db.Queryable<TEntity>().AnyAsync(whereExpression);
         }
 
+        #endregion
+
+        #region 新增
+
+        /// <summary>
+        /// 新增一条记录返回实体
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public virtual async Task<TEntity> InsertReturnEntity(TEntity entity)
+        {
+            return await _db.Insertable(entity).ExecuteReturnEntityAsync();
+        }
+
+        public async Task<int> Inster(TEntity entity) => await Add(entity);
+        public async Task<int> Inster(List<TEntity> entity) => await Add(entity);
+
+
         /// <summary>
         /// 写入实体数据
         /// </summary>
@@ -159,18 +161,9 @@ namespace MineCosmos.Core.Repository.Base
         /// <returns></returns>
         public async Task<int> Add(TEntity entity)
         {
-            //var i = await Task.Run(() => _db.Insertable(entity).ExecuteReturnBigIdentity());
-            ////返回的i是long类型,这里你可以根据你的业务需要进行处理
-            //return (int)i;
-
             var insert = _db.Insertable(entity);
-
-            //这里你可以返回TEntity，这样的话就可以获取id值，无论主键是什么类型
-            //var return3 = await insert.ExecuteReturnEntityAsync();
-
             return await insert.ExecuteReturnIdentityAsync();
         }
-
 
         /// <summary>
         /// 写入实体数据
@@ -201,17 +194,17 @@ namespace MineCosmos.Core.Repository.Base
             return await _db.Insertable(listEntity.ToArray()).ExecuteCommandAsync();
         }
 
+        #endregion
+
+        #region 更新
+
         /// <summary>
         /// 更新实体数据
         /// </summary>
-        /// <param name="entity">博文实体类</param>
+        /// <param name="entity">实体类</param>
         /// <returns></returns>
         public async Task<bool> Update(TEntity entity)
         {
-            ////这种方式会以主键为条件
-            //var i = await Task.Run(() => _db.Updateable(entity).ExecuteCommand());
-            //return i > 0;
-            //这种方式会以主键为条件
             return await _db.Updateable(entity).ExecuteCommandHasChangeAsync();
         }
 
@@ -224,6 +217,27 @@ namespace MineCosmos.Core.Repository.Base
         {
             return await _db.Ado.ExecuteCommandAsync(sql, parameters) > 0;
         }
+
+        /// <summary>
+        /// 更新记录
+        /// </summary>
+        /// <param name="predicate">更新的条件</param>
+        /// <param name="content">更新的内容</param>
+        /// <returns></returns>
+        public virtual int Update(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TEntity>> content)
+        {
+            return _db.Updateable(content).Where(predicate).IgnoreColumns(UpdateIgnoreColumns).ExecuteCommand();
+        }
+
+        #endregion
+
+
+
+
+
+
+
+
 
         public async Task<bool> Update(object operateAnonymousObjects)
         {

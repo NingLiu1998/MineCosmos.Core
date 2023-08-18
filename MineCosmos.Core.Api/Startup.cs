@@ -228,7 +228,7 @@ namespace MineCosmos.Core
             // 开启QuartzNetJob调度服务
             app.UseQuartzJobMiddleware(tasksQzServices, schedulerCenter);
             // 服务注册
-            app.UseConsulMiddle(Configuration, lifetime);
+            //app.UseConsulMiddle(Configuration, lifetime);
             // 事件总线，订阅服务
             app.ConfigureEventBus();
 

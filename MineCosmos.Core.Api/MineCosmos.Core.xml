@@ -434,60 +434,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:MineCosmos.Core.Controllers.PayController">
-            <summary>
-            建行聚合支付类
-            </summary>
-        </member>
-        <member name="M:MineCosmos.Core.Controllers.PayController.#ctor(Microsoft.Extensions.Logging.ILogger{MineCosmos.Core.Controllers.PayController},MineCosmos.Core.IServices.IPayServices)">
-            <summary>
-            构造函数
-            </summary> 
-            <param name="logger"></param>
-            <param name="payServices"></param>
-        </member>
-        <member name="M:MineCosmos.Core.Controllers.PayController.PayGet(MineCosmos.Core.Model.ViewModels.PayNeedModel)">
-            <summary>
-            被扫支付
-            </summary>
-            <param name="payModel"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MineCosmos.Core.Controllers.PayController.PayPost(MineCosmos.Core.Model.ViewModels.PayNeedModel)">
-            <summary>
-            被扫支付
-            </summary>
-            <param name="payModel"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MineCosmos.Core.Controllers.PayController.PayCheckGet(MineCosmos.Core.Model.ViewModels.PayNeedModel)">
-            <summary>
-            支付结果查询-轮询
-            </summary>
-            <param name="payModel"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MineCosmos.Core.Controllers.PayController.PayCheckPost(MineCosmos.Core.Model.ViewModels.PayNeedModel)">
-            <summary>
-            支付结果查询-轮询
-            </summary>
-            <param name="payModel"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MineCosmos.Core.Controllers.PayController.PayRefundGet(MineCosmos.Core.Model.ViewModels.PayRefundNeedModel)">
-            <summary>
-            退款
-            </summary>
-            <param name="payModel"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MineCosmos.Core.Controllers.PayController.PayRefundPost(MineCosmos.Core.Model.ViewModels.PayRefundNeedModel)">
-            <summary>
-            退款
-            </summary>
-            <param name="payModel"></param>
-            <returns></returns>
-        </member>
         <member name="T:MineCosmos.Core.Controllers.PermissionController">
             <summary>
             菜单管理

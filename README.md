@@ -20,14 +20,16 @@
 
 ### 对原Blog.Core的相关调整
 
-> 根据实际情况进行的修改，包含修改原因和修改内容
+> 根据实际情况进行的修改调整
 
-- #### Wechat模块的变动 （TODO）
-- 移除原生对接WeChat模块，考虑人手问题以及WeChat官方变动的频繁性，改为
-- 改为使用 https://github.com/fudiwei/DotNetCore.SKIT.FlurlHttpClient.Wechat 开源库
+- #### 移除自行封装的Wechat相关操作
+- 添加 [DotNetCore.SKIT.FlurlHttpClient.Wechat](https://github.com/fudiwei/DotNetCore.SKIT.FlurlHttpClient.Wechat)
+- 添加 [MrHuo.OAuth](https://github.com/mrhuo/MrHuo.OAuth)
 
 - #### 缓存 Redis使用变动
 - 不再封装一层redis使用，直接使用Csredis
 
-
 - #### 移除了ES
+- #### 移除了Apollo
+- #### 移除了Consul
+- #### 移除了建行聚合支付

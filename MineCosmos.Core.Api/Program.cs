@@ -7,7 +7,6 @@ using MineCosmos.Core.Common;
 using MineCosmos.Core.Common.LogHelper;
 using MineCosmos.Core.Common.Seed;
 using MineCosmos.Core.Extensions;
-using MineCosmos.Core.Extensions.Apollo;
 using MineCosmos.Core.Extensions.Middlewares;
 using MineCosmos.Core.Filter;
 using MineCosmos.Core.Hubs;
@@ -42,13 +41,13 @@ builder.Host
     builder.AddFilter("Microsoft", LogLevel.Error);
     builder.SetMinimumLevel(LogLevel.Error);
     builder.AddLog4Net(Path.Combine(Directory.GetCurrentDirectory(), "Log4net.config"));
-})
-.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.Sources.Clear();
-    config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: false);
-    config.AddConfigurationApollo("appsettings.apollo.json");
 });
+//.ConfigureAppConfiguration((hostingContext, config) =>
+//{
+//    config.Sources.Clear();
+//    config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: false);
+//    config.AddConfigurationApollo("appsettings.apollo.json");
+//});
 
 #if DEBUG
 
@@ -204,7 +203,6 @@ var schedulerCenter = scope.ServiceProvider.GetRequiredService<ISchedulerCenter>
 var lifetime = scope.ServiceProvider.GetRequiredService<IHostApplicationLifetime>();
 app.UseSeedDataMiddle(myContext, builder.Environment.WebRootPath);
 app.UseQuartzJobMiddleware(tasksQzServices, schedulerCenter);
-app.UseConsulMiddle(builder.Configuration, lifetime);
 app.ConfigureEventBus();
 
 // 4、运行
