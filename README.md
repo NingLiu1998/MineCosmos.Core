@@ -22,6 +22,8 @@
 
 > 根据实际情况进行的修改调整
 
+- #### 增加sqlsugar OnError 处理
+
 - #### 移除自行封装的Wechat相关操作
 - 添加 [DotNetCore.SKIT.FlurlHttpClient.Wechat](https://github.com/fudiwei/DotNetCore.SKIT.FlurlHttpClient.Wechat)
 - 添加 [MrHuo.OAuth](https://github.com/mrhuo/MrHuo.OAuth)

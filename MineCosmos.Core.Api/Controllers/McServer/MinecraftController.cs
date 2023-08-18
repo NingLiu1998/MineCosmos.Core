@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MineCosmos.Core.Api.Filter;
+using MineCosmos.Core.Common.Helper;
 using MineCosmos.Core.IRepository.Base;
 using MineCosmos.Core.IServices.Minecraft;
 using MineCosmos.Core.Model.Models;
@@ -59,7 +60,6 @@ namespace MineCosmos.Core.Controllers
             if (hasPlayer)
             {
                 player = await _mcPlayerRepostiory.GetAsync(a => a.UUID == model.UUID);
-
             }
             else
             {
@@ -68,6 +68,7 @@ namespace MineCosmos.Core.Controllers
                 {
                     UUID = model.UUID,
                     Name = model.Name,
+                    Pwd = MD5Helper.MD5Encrypt32(model.Name),
                     LastServerLoginTime = DateTime.Now
                 };
                 player.Id = await _mcPlayerRepostiory.Add(player);

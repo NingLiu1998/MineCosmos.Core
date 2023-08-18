@@ -9,6 +9,7 @@ using StackExchange.Profiling;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MineCosmos.Core.Model;
 
 namespace MineCosmos.Core.Extensions
 {
@@ -53,7 +54,6 @@ namespace MineCosmos.Core.Extensions
                         ConnectionString = m.Connection,
                         DbType = (DbType)m.DbType,
                         IsAutoCloseConnection = true,
-                        // Check out more information: https://github.com/anjoy8/MineCosmos.Core/issues/122
                         //IsShardSameThread = false,
                         AopEvents = new AopEvents
                         {
@@ -77,8 +77,79 @@ namespace MineCosmos.Core.Extensions
                                     }
                                 }
                             },
-                             
-                        },
+                            OnError = (ex) =>
+                            {
+                                //打印日志
+                                    if (ex.Parametres == null) return;
+                                    Console.ForegroundColor = ConsoleColor.Red;
+
+                                //UtilMethods.GetNativeSql(ex.Sql, ex.Parametres);
+                                    //var pars = m.db.Utilities.SerializeObject(((SugarParameter[])ex.Parametres).ToDictionary(it => it.ParameterName, it => it.Value));
+                                    //WriteSqlLog($"{m.ConnId}库操作异常");
+                                    //Console.WriteLine(UtilMethods.GetSqlString(config.DbType, ex.Sql, (SugarParameter[])ex.Parametres) + "\r\n");
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                
+                            },
+                            //插入和更新过滤器
+                            DataExecuting = (oldValue, entityInfo) =>
+                            {
+                                // 新增操作
+                                if (entityInfo.OperationType == DataFilterType.InsertByObject)
+                                {
+                                    
+                                    if (entityInfo.PropertyName == nameof(RootEntityTkey<int>.CreateTime))
+                                        entityInfo.SetValue(DateTime.Now);
+
+                                    if (entityInfo.PropertyName == nameof(RootEntityTkey<int>.IsDeleted))
+                                    {
+                                       var val = entityInfo.EntityColumnInfo.PropertyInfo.GetValue(entityInfo.EntityValue);
+                                        if (val is null)
+                                        {
+                                            entityInfo.SetValue(false);
+                                        }                                       
+                                        
+                                    }
+                                     
+
+                                    //手机号和密码自动加密
+                                    //if (entityInfo.EntityName == nameof(SysUser) && (entityInfo.PropertyName == nameof(SysUser.Password) || entityInfo.PropertyName == nameof(SysUser.Phone)))
+                                    //    entityInfo.SetValue(CryptogramUtil.Sm4Encrypt(oldValue?.ToString()));
+
+                                    //获取当前登录token
+
+                                    //if (App.User != null)
+                                    //{
+                                    //    //创建人和创建机构ID
+                                    //    if (entityInfo.PropertyName == nameof(BaseEntity.CreateUserId))
+                                    //        entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
+                                    //    if (entityInfo.PropertyName == nameof(BaseEntity.CreateUser))
+                                    //        entityInfo.SetValue(App.User?.FindFirst(ClaimConst.Account)?.Value);
+                                    //    if (entityInfo.PropertyName == nameof(DataEntityBase.CreateOrgId))
+                                    //        entityInfo.SetValue(App.User.FindFirst(ClaimConst.OrgId)?.Value);
+                                    //}
+                                }
+                                // 更新操作
+                                if (entityInfo.OperationType == DataFilterType.UpdateByObject)
+                                {
+                                    
+                                    //更新时间
+                                    if (entityInfo.PropertyName == nameof(RootEntityTkey<int>.ModifyTime))
+                                        entityInfo.SetValue(DateTime.Now);
+                                    //获取登录jwt token 信息
+
+                                    ////更新人
+                                    //if (App.User != null)
+                                    //{
+                                    //    if (entityInfo.PropertyName == nameof(BaseEntity.UpdateUserId))
+                                    //        entityInfo.SetValue(App.User?.FindFirst(ClaimConst.UserId)?.Value);
+                                    //    if (entityInfo.PropertyName == nameof(BaseEntity.UpdateUser))
+                                    //        entityInfo.SetValue(App.User?.FindFirst(ClaimConst.Account)?.Value);
+                                    //}
+
+                                }
+                            }
+
+                },
                         MoreSettings = new ConnMoreSettings()
                         {
                             //IsWithNoLockQuery = true,
@@ -99,7 +170,8 @@ namespace MineCosmos.Core.Extensions
                                 }
                             }
                         },
-                        InitKeyType = InitKeyType.Attribute
+                        InitKeyType = InitKeyType.Attribute,
+                        
                     }
                    );
                 });

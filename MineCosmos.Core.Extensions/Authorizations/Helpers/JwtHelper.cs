@@ -85,13 +85,14 @@ namespace MineCosmos.Core.AuthHelper.OverWrite
                 JwtSecurityToken jwtToken = jwtHandler.ReadJwtToken(jwtStr);
 
                 object role;
-
                 jwtToken.Payload.TryGetValue(ClaimTypes.Role, out role);
+                jwtToken.Payload.TryGetValue(ClaimTypes.Name, out object name);
 
                 tokenModelJwt = new TokenModelJwt
                 {
                     Uid = (jwtToken.Id).ObjToInt(),
                     Role = role != null ? role.ObjToString() : "",
+                   
                 };
             }
             return tokenModelJwt;
@@ -119,6 +120,18 @@ namespace MineCosmos.Core.AuthHelper.OverWrite
         /// Id
         /// </summary>
         public long Uid { get; set; }
+        /// <summary>
+        /// 玩家身份才会有的服务器uuid
+        /// </summary>
+        public string Uuid { get; set; }
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// 用户类型：0 系统用户，1 游戏玩家， 2 第三方
+        /// </summary>
+        public int UserTypeObject { get; set; }
         /// <summary>
         /// 角色
         /// </summary>

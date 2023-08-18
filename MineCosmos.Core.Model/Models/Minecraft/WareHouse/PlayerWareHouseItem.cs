@@ -16,7 +16,7 @@ public class PlayerWareHouseItem : RootEntityTkey<int>
     /// <summary>
     /// Minecraft物品数据 （就是Minecraft里面一个ItemStack的数据）
     /// </summary>
-    [SugarColumn(Length = 500, IsNullable = true)]
+    [SugarColumn(IsNullable = true,ColumnDataType ="text")]
     public string ItemData { get; set; }
 
     /// <summary>

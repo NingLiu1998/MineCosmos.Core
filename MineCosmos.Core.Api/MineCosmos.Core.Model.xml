@@ -476,6 +476,11 @@
             玩家名称（纯英文）
             </summary>
         </member>
+        <member name="P:MineCosmos.Core.Model.Models.MinecraftPlayer.Pwd">
+            <summary>
+            登录密码
+            </summary>
+        </member>
         <member name="P:MineCosmos.Core.Model.Models.MinecraftPlayer.UUID">
             <summary>
             正版唯一ID

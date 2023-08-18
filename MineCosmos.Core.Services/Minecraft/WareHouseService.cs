@@ -48,7 +48,7 @@ namespace MineCosmos.Core.Services
             PlayerWareHouse playerWareHouse = await GetAsync(a =>
             a.PlayerId == model.WareHouse.PlayerId
             && !a.IsDeleted.Value
-            && a.Type == PlayerWareHouseTypeEnum.默认仓库);
+            && a.Type == model.WareHouse.Type);
 
             int hasItemCount = 0;
             if (playerWareHouse is null)
@@ -56,12 +56,6 @@ namespace MineCosmos.Core.Services
                 playerWareHouse = await InsertReturnEntity(model.WareHouse);
                 hasItemCount = await _mcPlayerWareHouseItem.CountAsync(a => a.WareHouseId == playerWareHouse.Id);
             }
-            else
-            {
-                playerWareHouse = model.WareHouse;
-                await Add(playerWareHouse);
-            }
-
 
             if (model.Items.Count > 0)
             {
@@ -73,7 +67,6 @@ namespace MineCosmos.Core.Services
                 //批量添加物品
                 await _mcPlayerWareHouseItem.Add(model.Items);
             }
-
 
             return playerWareHouse;
         }

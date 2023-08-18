@@ -15,6 +15,12 @@ namespace MineCosmos.Core.Model.Models
         public virtual string Name { get; set; }
 
         /// <summary>
+        /// 登录密码
+        /// </summary>
+        [SugarColumn(IsNullable = false)]
+        public virtual string Pwd { get; set; }
+
+        /// <summary>
         /// 正版唯一ID
         /// </summary>
         [SugarColumn(IsNullable = true)]
