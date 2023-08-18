@@ -186,14 +186,20 @@ app.UseAuthorization();
 app.UseMiniProfilerMiddleware();
 //app.UseExceptionHandlerMidd();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
 
-    endpoints.MapHub<ChatHub>("/api2/chatHub");
-});
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapControllerRoute(
+//        name: "default",
+//        pattern: "{controller=Home}/{action=Index}/{id?}");
+
+//    endpoints.MapHub<ChatHub>("/api2/chatHub");
+//});
+//改为顶级路由注册,参阅：https://learn.microsoft.com/zh-cn/aspnet/core/diagnostics/asp0014?view=aspnetcore-7.0
+
+app.MapControllers();
+app.MapControllerRoute(name: "default",pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapHub<ChatHub>("/api2/chatHub");
 
 
 var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
