@@ -222,6 +222,6 @@ namespace MineCosmos.Core.IRepository.Base
         Task<bool> AnyAsync(Expression<Func<TEntity, bool>> whereExpression);
         Task<TEntity> InsertReturnEntity(TEntity entity);
         Task<int> CountAsync(Expression<Func<TEntity, bool>> whereExpression);
-        List<TEntity> GetListAsync(Expression<Func<TEntity, bool>> whereExpression);
+        Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> whereExpression);
     }
 }

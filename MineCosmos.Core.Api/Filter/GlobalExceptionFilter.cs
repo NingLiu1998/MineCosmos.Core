@@ -36,6 +36,8 @@ namespace MineCosmos.Core.Filter
 
             json.msg = context.Exception.Message;//错误信息
             json.status = 500;//500异常 
+            json.response = "1"; //有些客户端无法解析带有null值json
+            json.msgDev = "5";
             var errorAudit = "Unable to resolve service for";
             if (!string.IsNullOrEmpty(json.msg) && json.msg.Contains(errorAudit))
             {
@@ -44,7 +46,7 @@ namespace MineCosmos.Core.Filter
 
             if (_env.EnvironmentName.ObjToString().Equals("Development"))
             {
-                json.msgDev = context.Exception.StackTrace;//堆栈信息
+                //json.msgDev = context.Exception.StackTrace;//堆栈信息
             }
             var res = new ContentResult();
             res.Content = JsonHelper.GetJSON<MessageModel<string>>(json);

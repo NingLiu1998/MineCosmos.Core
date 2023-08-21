@@ -69,9 +69,9 @@ namespace MineCosmos.Core.Repository.Base
         /// </summary>
         /// <param name="whereExpression"></param>
         /// <returns></returns>
-        public Task<int> CountAsync(Expression<Func<TEntity, bool>> whereExpression)
+        public async Task<int> CountAsync(Expression<Func<TEntity, bool>> whereExpression)
         {
-            return Entities.CountAsync(whereExpression);
+            return await Entities.CountAsync(whereExpression);
         }
 
         /// <summary>
@@ -79,9 +79,9 @@ namespace MineCosmos.Core.Repository.Base
         /// </summary>
         /// <param name="whereExpression"></param>
         /// <returns></returns>
-        public List<TEntity> GetListAsync(Expression<Func<TEntity, bool>> whereExpression)
+        public async  Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> whereExpression)
         {
-            return Entities.Where(whereExpression).ToList();
+            return await Entities.Where(whereExpression).ToListAsync();
         }
 
         public async Task<TEntity> QueryById(object objId)

@@ -90,7 +90,7 @@ namespace MineCosmos.Core.Controllers
 
 
 
-            return @model.Source;
+            return "成功";
         }
 
         public class ReqMinecraftItemDto

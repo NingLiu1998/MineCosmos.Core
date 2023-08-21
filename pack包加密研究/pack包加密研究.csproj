@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="KYSharp.SM.Core" Version="1.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="SharpNBT" Version="1.2.0" />
   </ItemGroup>
 
 </Project>

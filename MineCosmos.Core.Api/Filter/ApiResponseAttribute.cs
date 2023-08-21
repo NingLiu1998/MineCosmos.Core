@@ -25,7 +25,8 @@ namespace MineCosmos.Core.Api.Filter
                         status = 200,
                         response = objectResult.Value,
                         msg = "success",
-                        success = true
+                        success = true,
+                        msgDev = "success"
                     };
 
                     context.Result = new ObjectResult(wrappedResponse)

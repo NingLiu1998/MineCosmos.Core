@@ -54,8 +54,13 @@ namespace MineCosmos.Core.Services
             if (playerWareHouse is null)
             {
                 playerWareHouse = await InsertReturnEntity(model.WareHouse);
+            }
+            else
+            {
                 hasItemCount = await _mcPlayerWareHouseItem.CountAsync(a => a.WareHouseId == playerWareHouse.Id);
             }
+
+         
 
             if (model.Items.Count > 0)
             {
@@ -85,7 +90,7 @@ namespace MineCosmos.Core.Services
             if(lstWareHouse.Count <=0) throw Oops.Bah("玩家没有仓库");
 
             var lstId = lstWareHouse.Select(a=>a.Id).ToList();
-            var lstWareHouseItem = _mcPlayerWareHouseItem.GetListAsync(a => lstId.Contains(a.WareHouseId) && !a.IsDeleted.Value);
+            var lstWareHouseItem =await  _mcPlayerWareHouseItem.GetListAsync(a => lstId.Contains(a.WareHouseId) && !a.IsDeleted.Value);
 
             List<PlayerWareHouseCreateDto> lst = new();
 

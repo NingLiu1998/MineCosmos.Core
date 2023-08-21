@@ -1,8 +1,12 @@
-﻿namespace MineCosmos.Core.Model
+﻿using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+
+namespace MineCosmos.Core.Model
 {
     /// <summary>
     /// 通用返回信息类
     /// </summary>
+    
     public class MessageModel<T>
     {
         /// <summary>
@@ -20,10 +24,12 @@
         /// <summary>
         /// 开发者信息
         /// </summary>
-        public string msgDev { get; set; }
+        public string msgDev { get; set; } = "";
         /// <summary>
         /// 返回数据集合
         /// </summary>
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        [System.Text.Json.Serialization.JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public T response { get; set; }
 
         /// <summary>
