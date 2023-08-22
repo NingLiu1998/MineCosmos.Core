@@ -29,7 +29,7 @@ Console.WriteLine($"展示用json:{webJson}");
 
 var  dics = JsonConvert.DeserializeObject<Dictionary<string, object>>(webJson);
 
-var Ntag = nbtHelper.DicToTag(dics);
+var Ntag = nbtHelper.DicToTag2(dics).Create();
 string nSNBT =Ntag.Stringify();
 
 Console.WriteLine($"回传NBT字符串:{webJson}");

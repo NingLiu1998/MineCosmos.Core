@@ -68,11 +68,79 @@ namespace pack包加密研究
 
 
 
+        public static TagBuilder DicToTag2(Dictionary<string, object> dic, string name = "")
+        {
+            
+             TagBuilder?   builder = new TagBuilder(name);
+            foreach (var dicItem in dic)
+            {
+                switch (dicItem.Value)
+                {
+                    //对应long 也就是mc中的byte  b
+                    case Int64 intVal when dicItem.Key.Equals(NBTCOUNT):
+                        builder.AddByte("Count", Convert.ToByte(dicItem.Value));
+                        break;
+
+                    case string intVal when dicItem.Key.Equals(NBTID):
+                        builder.AddString(dicItem.Key, dicItem.Value.ToString());
+                        break;
+
+                    case Int64 intVal when dicItem.Key.Equals(NBTLVL):
+                        builder.AddShort(NBTLVL, Convert.ToInt16(dicItem.Value));
+                        break;
+
+                    case Int64 intVal when dicItem.Key.Equals(NBTDAMAGE):
+                        builder.AddInt(NBTDAMAGE, Convert.ToInt32(dicItem.Value));
+                        break;
+
+                    case Newtonsoft.Json.Linq.JObject dicJobject when dicItem.Key.Equals(NBTTAG):
+                        //Newtonsoft.Json.Linq.JArray
+                        Dictionary<string, object> dictionary = dicJobject.ToObject<Dictionary<string, object>>();
+                        var dicJobjectTag = DicToTag2(dictionary, NBTTAG).Create();
+                        builder.AddTag(dicJobjectTag);
+
+                        break;
+
+                    case Newtonsoft.Json.Linq.JArray dicJArry when dicItem.Key.Equals(NBTEnchantments):
+
+                        List<Dictionary<string, object>> list = dicJArry.ToObject<List<Dictionary<string, object>>>();
+                        using (builder.NewList(TagType.Compound, dicItem.Key))
+                        {
+                            foreach (var dicJArryItem in list)
+                            {
+                                //foreach (var item in dicJArryItem)
+                                //{
+                                //    TagBuilder tb = new TagBuilder();
+                                //    tb.AddString(item.Key,"test");
+                                //    tb.AddString(item.Key+"111","test111");
+                                //    builder.AddTag(tb.Create());
+                                //}
+
+                                foreach (var item in dicJArryItem)
+                                {
+                                    var itemTagBuilder = DicToTag2(ConvertToDictionary(item));
+                                    builder.AddTag(itemTagBuilder.Create());
+                                }
+
+                                //var dicJarrTagBuilder = DicToTag2(dicJArryItem);
+                                //builder.AddTag(dicJarrTagBuilder.Create());
+                            }
+                        }
+                        break;
+                }
+            }
+            return builder;
+        }
 
 
 
 
-
+        private static Dictionary<string, object> ConvertToDictionary(KeyValuePair<string, object> pair)
+        {
+            Dictionary<string, object> dictionary = new Dictionary<string, object>();
+            dictionary.Add(pair.Key, pair.Value);
+            return dictionary;
+        }
 
 
         public static CompoundTag DicToTag(Dictionary<string, object> dic, string name = "",TagBuilder? builder = null)
@@ -100,15 +168,11 @@ namespace pack包加密研究
                         builder.AddInt(NBTDAMAGE, Convert.ToInt32(dicItem.Value));
                         break;
 
-                    // List<Dictionary<string, object>>
                     case Newtonsoft.Json.Linq.JObject dicJobject when dicItem.Key.Equals(NBTTAG):
                         //Newtonsoft.Json.Linq.JArray
-                        //var tagBuilder = new TagBuilder(NBTTAG);
                         Dictionary<string, object> dictionary = dicJobject.ToObject<Dictionary<string, object>>();
                         var dicJobjectTag = DicToTag(dictionary, NBTTAG);
-                        //tagBuilder.AddTag(dicJobjectTag);
                         builder.AddTag(dicJobjectTag);
-                        //builder.AddTag( tagBuilder.Create());
 
                         break;
 
@@ -119,7 +183,15 @@ namespace pack包加密研究
                         {
                             foreach (var dicJArryItem in list)
                             {
-                                CompoundTag? dicJarrTag = DicToTag(dicJArryItem,"123");
+                                //foreach (var item in dicJArryItem)
+                                //{
+                                //    TagBuilder tb = new TagBuilder();
+                                //    tb.AddString(item.Key,"test");
+                                //    tb.AddString(item.Key+"111","test111");
+                                //    builder.AddTag(tb.Create());
+                                //}
+
+                               CompoundTag? dicJarrTag = DicToTag(dicJArryItem);
                                builder.AddTag(dicJarrTag);
                             }
                         }
