@@ -28,13 +28,21 @@ namespace MineCosmos.Core.Controllers
         }
 
         /// <summary>
-        /// 健康检查接口
+        /// 测试接口
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult Get()
+        public dynamic Get()
         {
-            return Ok();
+            return new Dictionary<string, object>() {
+               {"c1","123" },
+               {"c13",new string []{"1","2","3" } },
+                { "x12",new Dictionary<string, object>() {
+               {"c2","123" },
+               {"c3",new string []{"1","2","3" } },
+
+           }}
+           };
         }
 
         /// <summary>

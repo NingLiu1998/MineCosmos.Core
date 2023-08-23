@@ -1,4 +1,5 @@
 using MineCosmos.Core.Common;
+using MineCosmos.Core.Common.Helper;
 using MineCosmos.Core.Common.Static;
 using MineCosmos.Core.IRepository.Base;
 using MineCosmos.Core.IServices;
@@ -60,7 +61,7 @@ namespace MineCosmos.Core.Services
                 hasItemCount = await _mcPlayerWareHouseItem.CountAsync(a => a.WareHouseId == playerWareHouse.Id);
             }
 
-         
+
 
             if (model.Items.Count > 0)
             {
@@ -85,21 +86,47 @@ namespace MineCosmos.Core.Services
         public async Task<List<PlayerWareHouseCreateDto>> GetPlayerAllWareHouse(int playerId)
         {
 
-           var lstWareHouse = await  GetListAsync(a=>a.PlayerId == playerId && !a.IsDeleted.Value);
+            var lstWareHouse = await GetListAsync(a => a.PlayerId == playerId && !a.IsDeleted.Value);
 
-            if(lstWareHouse.Count <=0) throw Oops.Bah("玩家没有仓库");
+            if (lstWareHouse.Count <= 0) throw Oops.Bah("玩家没有仓库");
 
-            var lstId = lstWareHouse.Select(a=>a.Id).ToList();
-            var lstWareHouseItem =await  _mcPlayerWareHouseItem.GetListAsync(a => lstId.Contains(a.WareHouseId) && !a.IsDeleted.Value);
+            var lstId = lstWareHouse.Select(a => a.Id).ToList();
+            List<PlayerWareHouseItem> lstWareHouseItem = await _mcPlayerWareHouseItem.GetListAsync(a => lstId.Contains(a.WareHouseId) && !a.IsDeleted.Value);
+
 
             List<PlayerWareHouseCreateDto> lst = new();
+
+            #region 物品NBT 转换 Dic
+            var lstItem = new List<PlayerWareHouseItemDto>();
+            foreach (PlayerWareHouseItem wareHouseItem in lstWareHouseItem)
+            {
+                //暂时这样处理无法转换的物品
+                try
+                {
+                    var nbtDic = NbtHelper.NbtStrToDic(wareHouseItem.ItemData);
+                    lstItem.Add(new PlayerWareHouseItemDto
+                    {
+                        ItemType = wareHouseItem.ItemType,
+                        NbtJson = nbtDic,
+                        Slot = wareHouseItem.Slot,
+                        WareHouseId = wareHouseItem.WareHouseId,
+                        NbtId = wareHouseItem.Id
+                    });
+                }
+                catch (System.Exception)
+                {
+                    continue;
+                }
+                
+            }
+            #endregion
 
             foreach (PlayerWareHouse wareHouse in lstWareHouse)
             {
                 lst.Add(new()
                 {
-                     Items = lstWareHouseItem.Where(a=>a.WareHouseId == wareHouse.Id).ToList(),
-                     WareHouse = wareHouse
+                    Items = lstItem,
+                    WareHouse = wareHouse
                 });
             }
 

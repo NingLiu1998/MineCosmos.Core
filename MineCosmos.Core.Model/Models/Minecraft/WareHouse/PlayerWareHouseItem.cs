@@ -25,7 +25,7 @@ public class PlayerWareHouseItem : RootEntityTkey<int>
     public WareHouseItemTypeEnum ItemType { get; set; }
 
     /// <summary>
-    /// 所在栏位 (主要作用于前端界面展示
+    /// 所在栏位 (这个代表的是云平台仓库栏位，和mc无关
     /// </summary>
     public int Slot { get; set; }
 

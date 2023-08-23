@@ -4,6 +4,7 @@ using MineCosmos.Core.Common.Helper;
 using MineCosmos.Core.IRepository.Base;
 using MineCosmos.Core.IServices.Minecraft;
 using MineCosmos.Core.Model.Models;
+using MineCosmos.Core.Model.ViewModels.Minecraft;
 using Newtonsoft.Json.Linq;
 
 namespace MineCosmos.Core.Controllers
@@ -91,15 +92,6 @@ namespace MineCosmos.Core.Controllers
 
 
             return "成功";
-        }
-
-        public class ReqMinecraftItemDto
-        {
-            public string Source { get; set; }
-            public string UUID { get; set; }
-            public string Name { get; set; }
-            public string SourceVersion { get; set; }
-            public string ApiKey { get; set; }
         }
 
         /// <summary>

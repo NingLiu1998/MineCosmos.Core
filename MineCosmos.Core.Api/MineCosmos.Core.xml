@@ -338,7 +338,7 @@
         </member>
         <member name="M:MineCosmos.Core.Controllers.PlayerController.Get">
             <summary>
-            健康检查接口
+            测试接口
             </summary>
             <returns></returns>
         </member>
