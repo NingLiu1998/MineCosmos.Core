@@ -352,3 +352,5 @@ MineCosmos.Core/WMBlog.db
 MineCosmos.Core/MineCosmos.Core*.xml
 MineCosmos.Core.Api/WMBlog.db
 MineCosmos.Core.Api/wwwroot/ui/
+/MineCosmos.Core.Api/appsettings.agileconfig.json
+/MineCosmos.Core.Api/appsettings.agileconfig.debug.json
