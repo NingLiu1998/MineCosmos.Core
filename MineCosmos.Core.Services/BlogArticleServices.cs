@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using Mapster;
 using MineCosmos.Core.Common;
 using MineCosmos.Core.IRepository.Base;
 using MineCosmos.Core.IServices;
@@ -13,10 +13,9 @@ namespace MineCosmos.Core.Services
 {
     public class BlogArticleServices : BaseServices<BlogArticle>, IBlogArticleServices
     {
-        IMapper _mapper;
-        public BlogArticleServices(IMapper mapper)
+        public BlogArticleServices()
         {
-            this._mapper = mapper;
+
         }
         /// <summary>
         /// 获取视图博客详情信息
@@ -33,7 +32,7 @@ namespace MineCosmos.Core.Services
 
             if (blogArticle != null)
             {
-                models = _mapper.Map<BlogViewModels>(blogArticle);
+                models = blogArticle.Adapt<BlogViewModels>();
 
                 //要取下一篇和上一篇，以当前id开始，按id排序后top(2)，而不用取出所有记录
                 //这样在记录很多的时候也不会有多大影响

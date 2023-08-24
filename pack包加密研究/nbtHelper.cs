@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -10,6 +11,20 @@ using SharpNBT;
 
 namespace pack包加密研究
 {
+
+    public static partial class NbtEscapeHelper
+    {
+        public static string Escape(string input) =>
+            NbtEscapeRegex()
+                .Replace(input, match => match.Groups[0].Value.Replace("\"", "\\u0022"));
+
+        [GeneratedRegex("'.*?'", RegexOptions.Compiled)]
+        private static partial Regex NbtEscapeRegex();
+
+        public static string Unescape(string input) => input.Replace("\\u0022", "\"");
+    }
+
+
     public class nbtHelper
     {
 
@@ -42,10 +57,12 @@ namespace pack包加密研究
         /// </summary>
         static string NBTAttributeModifiers => "AttributeModifiers";
 
+        
+
         public static Dictionary<string, object> TagToDic(CompoundTag tags, Dictionary<string, object>? dic)
         {
             if (dic is null)
-                dic = new();
+                dic = new Dictionary<string, object> ();
             //   dic.TryAdd(tagItem.Name, TagHandle(tagItem, dic));
             foreach (Tag tagItem in tags)
             {
@@ -56,6 +73,9 @@ namespace pack包加密研究
                 {
 
                     case StringTag stringTag when stringTag.Name.Equals(NBTID):
+                        dic.TryAdd(stringTag.Name, stringTag.Value);
+                        break;
+                    case StringTag stringTag when stringTag.Name.Equals("Name"):
                         dic.TryAdd(stringTag.Name, stringTag.Value);
                         break;
 

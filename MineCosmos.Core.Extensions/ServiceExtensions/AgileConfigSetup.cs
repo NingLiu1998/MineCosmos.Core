@@ -1,6 +1,5 @@
 using MineCosmos.Core.Common;
 using MineCosmos.Core.Common.Helper;
-using MineCosmos.Core.Extensions.NacosConfig;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;

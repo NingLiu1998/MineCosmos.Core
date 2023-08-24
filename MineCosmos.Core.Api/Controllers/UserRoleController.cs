@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using AutoMapper;
 using MineCosmos.Core.IServices;
 using MineCosmos.Core.Model;
 using MineCosmos.Core.Model.Models;
 using MineCosmos.Core.Model.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Mapster;
 
 namespace MineCosmos.Core.Controllers
 {
@@ -21,7 +21,6 @@ namespace MineCosmos.Core.Controllers
         private readonly ISysUserInfoServices _sysUserInfoServices;
         private readonly IUserRoleServices _userRoleServices;
         private readonly IRoleServices _roleServices;
-        private readonly IMapper _mapper;
 
         /// <summary>
         /// 构造函数
@@ -30,12 +29,11 @@ namespace MineCosmos.Core.Controllers
         /// <param name="userRoleServices"></param>
         /// <param name="mapper"></param>
         /// <param name="roleServices"></param>
-        public UserRoleController(ISysUserInfoServices sysUserInfoServices, IUserRoleServices userRoleServices, IMapper mapper, IRoleServices roleServices)
+        public UserRoleController(ISysUserInfoServices sysUserInfoServices, IUserRoleServices userRoleServices,  IRoleServices roleServices)
         {
             _sysUserInfoServices = sysUserInfoServices;
             _userRoleServices = userRoleServices;
             _roleServices = roleServices;
-            _mapper = mapper;
         }
 
 
@@ -54,7 +52,7 @@ namespace MineCosmos.Core.Controllers
             {
                 success = true,
                 msg = "添加成功",
-                response = _mapper.Map<SysUserInfoDto>(userInfo)
+                response = userInfo.Adapt<SysUserInfoDto>() //_mapper.Map<SysUserInfoDto>(userInfo)
             };
         }
 

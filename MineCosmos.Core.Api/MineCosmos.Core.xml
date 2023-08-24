@@ -318,7 +318,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:MineCosmos.Core.Controllers.MinecraftController.PutItem(MineCosmos.Core.Controllers.MinecraftController.ReqMinecraftItemDto)">
+        <member name="M:MineCosmos.Core.Controllers.MinecraftController.PutItem(MineCosmos.Core.Model.ViewModels.Minecraft.ReqMinecraftItemDto)">
             <summary>
             接受MC服务器传递的物品数据
             </summary>
@@ -633,7 +633,7 @@
             用户管理
             </summary>
         </member>
-        <member name="M:MineCosmos.Core.Controllers.UserController.#ctor(MineCosmos.Core.Repository.UnitOfWorks.IUnitOfWorkManage,MineCosmos.Core.IServices.ISysUserInfoServices,MineCosmos.Core.IServices.IUserRoleServices,MineCosmos.Core.IServices.IRoleServices,MineCosmos.Core.IServices.IDepartmentServices,MineCosmos.Core.Common.HttpContextUser.IUser,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{MineCosmos.Core.Controllers.UserController})">
+        <member name="M:MineCosmos.Core.Controllers.UserController.#ctor(MineCosmos.Core.Repository.UnitOfWorks.IUnitOfWorkManage,MineCosmos.Core.IServices.ISysUserInfoServices,MineCosmos.Core.IServices.IUserRoleServices,MineCosmos.Core.IServices.IRoleServices,MineCosmos.Core.IServices.IDepartmentServices,MineCosmos.Core.Common.HttpContextUser.IUser,Microsoft.Extensions.Logging.ILogger{MineCosmos.Core.Controllers.UserController})">
             <summary>
             构造函数
             </summary>
@@ -688,7 +688,7 @@
             用户角色关系
             </summary>
         </member>
-        <member name="M:MineCosmos.Core.Controllers.UserRoleController.#ctor(MineCosmos.Core.IServices.ISysUserInfoServices,MineCosmos.Core.IServices.IUserRoleServices,AutoMapper.IMapper,MineCosmos.Core.IServices.IRoleServices)">
+        <member name="M:MineCosmos.Core.Controllers.UserRoleController.#ctor(MineCosmos.Core.IServices.ISysUserInfoServices,MineCosmos.Core.IServices.IUserRoleServices,MineCosmos.Core.IServices.IRoleServices)">
             <summary>
             构造函数
             </summary>
@@ -725,7 +725,7 @@
             Values控制器
             </summary>
         </member>
-        <member name="M:MineCosmos.Core.Controllers.ValuesController.#ctor(MineCosmos.Core.IServices.IBlogArticleServices,AutoMapper.IMapper,MineCosmos.Core.IServices.IAdvertisementServices,MineCosmos.Core.Model.Love,MineCosmos.Core.IServices.IRoleModulePermissionServices,MineCosmos.Core.Common.HttpContextUser.IUser,MineCosmos.Core.IServices.IPasswordLibServices,MineCosmos.Core.Common.WebApiClients.HttpApis.IBlogApi,MineCosmos.Core.Common.WebApiClients.HttpApis.IDoubanApi,MineCosmos.Core.Common.HttpPolly.IHttpPollyHelper)">
+        <member name="M:MineCosmos.Core.Controllers.ValuesController.#ctor(MineCosmos.Core.IServices.IBlogArticleServices,MineCosmos.Core.IServices.IAdvertisementServices,MineCosmos.Core.Model.Love,MineCosmos.Core.IServices.IRoleModulePermissionServices,MineCosmos.Core.Common.HttpContextUser.IUser,MineCosmos.Core.IServices.IPasswordLibServices,MineCosmos.Core.Common.WebApiClients.HttpApis.IBlogApi,MineCosmos.Core.Common.WebApiClients.HttpApis.IDoubanApi,MineCosmos.Core.Common.HttpPolly.IHttpPollyHelper)">
             <summary>
             ValuesController
             </summary>

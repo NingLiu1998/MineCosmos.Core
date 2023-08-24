@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Mapster;
+using Microsoft.AspNetCore.Mvc;
 using MineCosmos.Core.Api.Filter;
 using MineCosmos.Core.Common.Helper;
 using MineCosmos.Core.IRepository.Base;
@@ -84,7 +85,7 @@ namespace MineCosmos.Core.Controllers
                        ItemData= model.Source,
                        ItemType = WareHouseItemTypeEnum.插件
                       }
-                 }
+                 }.Adapt<List<PlayerWareHouseItemDto>>()
             });
 
 

@@ -79,6 +79,10 @@ public class NbtHelper
                     dic.TryAdd(stringTag.Name, stringTag.Value);
                     break;
 
+                case StringTag stringTag when stringTag.Name.Equals("Name"):
+                    dic.TryAdd(stringTag.Name, stringTag.Value);
+                    break;
+
                 case ByteTag byteTag when byteTag.Name.Equals(NBTCOUNT):
                     dic.TryAdd(byteTag.Name, (int)byteTag.Value);
                     break;

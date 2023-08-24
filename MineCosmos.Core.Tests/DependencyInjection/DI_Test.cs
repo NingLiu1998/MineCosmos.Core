@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Autofac.Extras.DynamicProxy;
-using AutoMapper;
 using MineCosmos.Core.AuthHelper;
 using MineCosmos.Core.Common;
 using MineCosmos.Core.Common.AppConfig;
@@ -56,7 +55,6 @@ namespace MineCosmos.Core.Tests
             var basePath = AppContext.BaseDirectory;
 
             IServiceCollection services = new ServiceCollection();
-            services.AddAutoMapper(typeof(Startup));
 
             services.AddSingleton(new AppSettings(basePath));
             services.AddSingleton(new LogLock(basePath));
@@ -118,9 +116,9 @@ namespace MineCosmos.Core.Tests
 
             // 属性注入
             var controllerBaseType = typeof(ControllerBase);
-            builder.RegisterAssemblyTypes(typeof(Startup).Assembly)
-                .Where(t => controllerBaseType.IsAssignableFrom(t) && t != controllerBaseType)
-                .PropertiesAutowired();
+            //builder.RegisterAssemblyTypes(typeof(Startup).Assembly)
+            //    .Where(t => controllerBaseType.IsAssignableFrom(t) && t != controllerBaseType)
+            //    .PropertiesAutowired();
          
             var servicesDllFile = Path.Combine(basePath, "MineCosmos.Core.Services.dll");
             var assemblysServices = Assembly.LoadFrom(servicesDllFile);
@@ -137,7 +135,6 @@ namespace MineCosmos.Core.Tests
 
             services.Replace(ServiceDescriptor.Transient<IControllerActivator, ServiceBasedControllerActivator>());
 
-            services.AddAutoMapperSetup();
 
             //将services填充到Autofac容器生成器中
             builder.Populate(services);

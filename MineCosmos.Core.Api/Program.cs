@@ -12,7 +12,6 @@ using MineCosmos.Core.Filter;
 using MineCosmos.Core.Hubs;
 using MineCosmos.Core.IServices;
 using MineCosmos.Core.Tasks;
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
@@ -24,6 +23,15 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
 using System.Text;
 using AgileConfig.Client;
+
+
+/*
+ * Mapster Github ：
+ * https://github.com/MapsterMapper/Mapster
+ * 无废话的Mapster一些中文文档：
+ * https://www.cnblogs.com/qiqigou/p/13696669.html
+ * https://github.com/rivenfx/Mapster-docs
+ */
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -77,12 +85,10 @@ builder.Services.AddMemoryCacheSetup();
 builder.Services.AddRedisSetup();
 builder.Services.AddSqlsugarSetup();
 builder.Services.AddDbSetup();
-builder.Services.AddAutoMapperSetup();
 builder.Services.AddCorsSetup();
 builder.Services.AddMiniProfilerSetup();
 builder.Services.AddSwaggerSetup();
 builder.Services.AddJobSetup();
-//builder.Services.AddJobSetup_HostedService();
 builder.Services.AddHttpContextSetup();
 builder.Services.AddAppTableConfigSetup(builder.Environment);
 builder.Services.AddHttpApi();
@@ -90,8 +96,6 @@ builder.Services.AddRabbitMQSetup();
 builder.Services.AddKafkaSetup(builder.Configuration);
 builder.Services.AddEventBusSetup();
 
-//
-//builder.Services.AddNacosSetup(builder.Configuration);
 
 builder.Services.AddAuthorizationSetup();
 if (Permissions.IsUseIds4 || Permissions.IsUseAuthing)

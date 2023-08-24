@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MineCosmos.Core.Common;
+﻿using MineCosmos.Core.Common;
 using MineCosmos.Core.Common.HttpContextUser;
 using MineCosmos.Core.Common.HttpPolly;
 using MineCosmos.Core.Common.WebApiClients.HttpApis;
@@ -31,7 +30,6 @@ namespace MineCosmos.Core.Controllers
     [Authorize]
     public class ValuesController : ControllerBase
     {
-        private IMapper _mapper;
         private readonly IAdvertisementServices _advertisementServices;
         private readonly Love _love;
         private readonly IRoleModulePermissionServices _roleModulePermissionServices;
@@ -56,8 +54,7 @@ namespace MineCosmos.Core.Controllers
         /// <param name="doubanApi"></param>
         /// <param name="httpPollyHelper"></param>
         public ValuesController(IBlogArticleServices blogArticleServices
-            , IMapper mapper
-            , IAdvertisementServices advertisementServices
+            ,  IAdvertisementServices advertisementServices
             , Love love
             , IRoleModulePermissionServices roleModulePermissionServices
             , IUser user, IPasswordLibServices passwordLibServices
@@ -65,8 +62,6 @@ namespace MineCosmos.Core.Controllers
             , IDoubanApi doubanApi
             , IHttpPollyHelper httpPollyHelper)
         {
-            // 测试 Authorize 和 mapper
-            _mapper = mapper;
             _advertisementServices = advertisementServices;
             _love = love;
             _roleModulePermissionServices = roleModulePermissionServices;

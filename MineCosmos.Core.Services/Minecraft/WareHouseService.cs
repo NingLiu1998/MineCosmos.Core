@@ -61,17 +61,16 @@ namespace MineCosmos.Core.Services
                 hasItemCount = await _mcPlayerWareHouseItem.CountAsync(a => a.WareHouseId == playerWareHouse.Id);
             }
 
-
-
             if (model.Items.Count > 0)
             {
                 if (model.Items.Count + hasItemCount > playerWareHouse.UpperLimit)
                     throw Oops.Bah("添加物品到仓库失败，已超出仓库存储上限");
 
                 model.Items.ForEach(a => a.WareHouseId = playerWareHouse.Id);
+              //  model.Items.Adap
 
                 //批量添加物品
-                await _mcPlayerWareHouseItem.Add(model.Items);
+              //  await _mcPlayerWareHouseItem.Add(model.Items);
             }
 
             return playerWareHouse;
@@ -85,14 +84,12 @@ namespace MineCosmos.Core.Services
         /// <returns></returns>
         public async Task<List<PlayerWareHouseCreateDto>> GetPlayerAllWareHouse(int playerId)
         {
-
             var lstWareHouse = await GetListAsync(a => a.PlayerId == playerId && !a.IsDeleted.Value);
 
             if (lstWareHouse.Count <= 0) throw Oops.Bah("玩家没有仓库");
 
             var lstId = lstWareHouse.Select(a => a.Id).ToList();
             List<PlayerWareHouseItem> lstWareHouseItem = await _mcPlayerWareHouseItem.GetListAsync(a => lstId.Contains(a.WareHouseId) && !a.IsDeleted.Value);
-
 
             List<PlayerWareHouseCreateDto> lst = new();
 

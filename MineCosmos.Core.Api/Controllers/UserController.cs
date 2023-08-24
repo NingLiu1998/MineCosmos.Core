@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿
 using MineCosmos.Core.AuthHelper.OverWrite;
 using MineCosmos.Core.Common.Helper;
 using MineCosmos.Core.Common.HttpContextUser;
@@ -13,7 +9,7 @@ using MineCosmos.Core.Model.ViewModels;
 using MineCosmos.Core.Repository.UnitOfWorks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Mapster;
 
 namespace MineCosmos.Core.Controllers
 {
@@ -31,7 +27,6 @@ namespace MineCosmos.Core.Controllers
         readonly IRoleServices _roleServices;
         private readonly IDepartmentServices _departmentServices;
         private readonly IUser _user;
-        private readonly IMapper _mapper;
         private readonly ILogger<UserController> _logger;
 
         /// <summary>
@@ -49,7 +44,7 @@ namespace MineCosmos.Core.Controllers
             IUserRoleServices userRoleServices,
             IRoleServices roleServices,
             IDepartmentServices departmentServices,
-            IUser user, IMapper mapper, ILogger<UserController> logger)
+            IUser user, ILogger<UserController> logger)
         {
             _unitOfWorkManage = unitOfWorkManage;
             _sysUserInfoServices = sysUserInfoServices;
@@ -57,7 +52,6 @@ namespace MineCosmos.Core.Controllers
             _roleServices = roleServices;
             _departmentServices = departmentServices;
             _user = user;
-            _mapper = mapper;
             _logger = logger;
         }
 
@@ -69,8 +63,9 @@ namespace MineCosmos.Core.Controllers
         /// <returns></returns>
         // GET: api/User
         [HttpGet]
-        public async Task<MessageModel<PageModel<SysUserInfoDto>>> Get(int page = 1, string key = "")
+        public async Task<MessageModel<PageModel<SysUserInfo>>> Get(int page = 1, string key = "")
         {
+            //SysUserInfoDto
             if (string.IsNullOrEmpty(key) || string.IsNullOrWhiteSpace(key))
             {
                 key = "";
@@ -104,8 +99,8 @@ namespace MineCosmos.Core.Controllers
 
             #endregion
 
-
-            return Success(data.ConvertTo<SysUserInfoDto>(_mapper));
+            return Success(data);
+          // return Success(data.ConvertTo<SysUserInfoDto>(_mapper));
         }
 
         private (string, List<int>) GetFullDepartmentName(List<Department> departments, int departmentId)
@@ -153,7 +148,7 @@ namespace MineCosmos.Core.Controllers
                     var userinfo = await _sysUserInfoServices.QueryById(tokenModel.Uid);
                     if (userinfo != null)
                     {
-                        data.response = _mapper.Map<SysUserInfoDto>(userinfo);
+                        data.response = userinfo.Adapt<SysUserInfoDto>();// _mapper.Map<SysUserInfoDto>(userinfo);
                         data.success = true;
                         data.msg = "获取成功";
                     }
@@ -177,7 +172,7 @@ namespace MineCosmos.Core.Controllers
             sysUserInfo.uLoginPWD = MD5Helper.MD5Encrypt32(sysUserInfo.uLoginPWD);
             sysUserInfo.uRemark = _user.Name;
 
-            var id = await _sysUserInfoServices.Add(_mapper.Map<SysUserInfo>(sysUserInfo));
+            var id = await _sysUserInfoServices.Add(sysUserInfo.Adapt<SysUserInfo>()/*_mapper.Map<SysUserInfo>(sysUserInfo)*/);
             data.success = id > 0;
             if (data.success)
             {
@@ -213,7 +208,8 @@ namespace MineCosmos.Core.Controllers
                     oldUser.CriticalModifyTime = DateTime.Now;
                 }
 
-                _mapper.Map(sysUserInfo, oldUser);
+               
+               // _mapper.Map(sysUserInfo, oldUser);
 
                 _unitOfWorkManage.BeginTran();
                 // 无论 Update Or Add , 先删除当前用户的全部 U_R 关系

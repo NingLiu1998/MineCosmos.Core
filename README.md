@@ -28,9 +28,8 @@
 - 添加 [DotNetCore.SKIT.FlurlHttpClient.Wechat](https://github.com/fudiwei/DotNetCore.SKIT.FlurlHttpClient.Wechat)
 - 添加 [MrHuo.OAuth](https://github.com/mrhuo/MrHuo.OAuth)
 
-- #### 缓存 Redis使用变动
-- 不再封装一层redis使用，直接使用Csredis
-
+- #### 缓存 Redis使用变动,直接使用Csredis提供的静态
+- #### 移除AutoMapper 改用Mapper
 - #### 移除了ES
 - #### 移除了Apollo
 - #### 移除了Consul

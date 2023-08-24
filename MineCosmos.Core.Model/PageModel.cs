@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace MineCosmos.Core.Model
@@ -43,32 +42,6 @@ namespace MineCosmos.Core.Model
         public PageModel<TOut> ConvertTo<TOut>()
         {
             return new PageModel<TOut>(page, dataCount, PageSize, default);
-        }
-
-
-        public PageModel<TOut> ConvertTo<TOut>(IMapper mapper)
-        {
-            var model = ConvertTo<TOut>();
-
-            if (data != null)
-            {
-                model.data = mapper.Map<List<TOut>>(data);
-            }
-
-            return model;
-        }
-
-
-        public PageModel<TOut> ConvertTo<TOut>(IMapper mapper, Action<IMappingOperationOptions> options)
-        {
-            var model = ConvertTo<TOut>();
-            if (data != null)
-            {
-                model.data = mapper.Map<List<TOut>>(data, options);
-            }
-
-            return model;
-
         }
 
     }
