@@ -54,13 +54,6 @@ namespace MineCosmos.Core.Model.Models
         /// </summary>
         [SugarColumn(IsNullable = true)]
         public string ModifyBy { get; set; }
-        /// <summary>
-        /// Desc:更新时间
-        /// Default:
-        /// Nullable:True
-        /// </summary>
-        [SugarColumn(IsNullable = true)]
-        public DateTime? ModifyTime { get; set; }
 
         [SugarColumn(IsIgnore = true)]
         public bool hasChildren { get; set; } = true;

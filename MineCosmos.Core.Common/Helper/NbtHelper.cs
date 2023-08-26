@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
 using SharpNBT;
 using SharpNBT.SNBT;
@@ -8,25 +9,32 @@ using SharpNBT.SNBT;
 namespace MineCosmos.Core.Common.Helper;
 
 #nullable enable
+public static partial class NbtEscapeHelper
+{
+    public static string Escape(string input) =>
+        NbtEscapeRegex()
+            .Replace(input, match => match.Groups[0].Value.Replace("\"", "\\u0022"));
 
-/// <summary>
-/// Minecraft NBT 数据操作类
-/// </summary>
+    [GeneratedRegex("'.*?'", RegexOptions.Compiled)]
+    private static partial Regex NbtEscapeRegex();
+
+    public static string Unescape(string input) => input.Replace("\\u0022", "\"");
+}
+
+
 public class NbtHelper
 {
-    #region Minecraft NBT 常见属性名
 
     static string NBTID => "id";
     static string NBTCOUNT => "Count";
     static string NBTLVL => "lvl";
     static string NBTDAMAGE => "Damage";
     static string NBTTAG => "tag";
+    static string NBTtext => "text";
     static string NBTEnchantments => "Enchantments";
     static string NBTSlot => "Slot";
     static string NBTBlockEntityTag => "BlockEntityTag";
     static string NBTItems => "Items";
-
-   
 
     /// <summary>
     /// 物品的自定义显示信息（名称、描述、皮革盔甲的颜色等等）
@@ -35,7 +43,6 @@ public class NbtHelper
 
     /// <summary>
     /// 物品名称底下的文字，必须是原始JSON文本
-    /// * 原版物品很少见
     /// </summary>
     static string NBTLore => "Lore";
     /// <summary>
@@ -47,8 +54,9 @@ public class NbtHelper
     /// 能够为生物以及物品增加属性修饰符
     /// </summary>
     static string NBTAttributeModifiers => "AttributeModifiers";
-
-    #endregion
+    static string NBTextra => "extra";
+    static string NBTName => "Name";
+    static string NBTRepairCost => "RepairCost";
 
     public static CompoundTag NbtStrToString(string nbtStr)
     {
@@ -57,29 +65,22 @@ public class NbtHelper
 
     public static Dictionary<string, object> NbtStrToDic(string nbtStr)
     {
-       return TagToDic(NbtStrToString(nbtStr),null);
+        return TagToDic(NbtStrToString(nbtStr), null);
     }
-
-    #region Tag 转 Dic
 
     public static Dictionary<string, object> TagToDic(CompoundTag tags, Dictionary<string, object>? dic)
     {
         if (dic is null)
-            dic = new();
-        //   dic.TryAdd(tagItem.Name, TagHandle(tagItem, dic));
+            dic = new Dictionary<string, object>();
         foreach (Tag tagItem in tags)
         {
-
-            //dic.TryAdd(tagItem.Name, TagHandle(tagItem, dic));
-
             switch (tagItem)
             {
 
                 case StringTag stringTag when stringTag.Name.Equals(NBTID):
                     dic.TryAdd(stringTag.Name, stringTag.Value);
                     break;
-
-                case StringTag stringTag when stringTag.Name.Equals("Name"):
+                case StringTag stringTag when stringTag.Name.Equals(NBTName):
                     dic.TryAdd(stringTag.Name, stringTag.Value);
                     break;
 
@@ -127,7 +128,7 @@ public class NbtHelper
                     break;
 
                 //int (就是后没没带英文的数字
-                case IntTag intTag when intTag.Name.Equals("RepairCost"):
+                case IntTag intTag when intTag.Name.Equals(NBTRepairCost):
                     dic.TryAdd(intTag.Name, intTag.Value);
                     break;
                 case IntTag intTag when intTag.Name.Equals(NBTDAMAGE):
@@ -172,9 +173,7 @@ public class NbtHelper
         return lst;
     }
 
-    #endregion
 
-    #region Dic 转 Tag
 
     public static TagBuilder DicToTag(Dictionary<string, object> dic, string? name = null)
     {
@@ -187,11 +186,25 @@ public class NbtHelper
                 case Int64 intVal when dicItem.Key.Equals(NBTCOUNT):
                     builder.AddByte(dicItem.Key, Convert.ToByte(dicItem.Value));
                     break;
-                case Int64 intVal when dicItem.Key.Equals("Slot"):
+                case Int64 intVal when dicItem.Key.Equals(NBTSlot):
                     builder.AddByte(dicItem.Key, Convert.ToByte(dicItem.Value));
                     break;
 
-                case string intVal when dicItem.Key.Equals(NBTID):
+                //这个是铁砧重命名后里面的nbt信息
+                case string textStr when dicItem.Key.Equals(NBTtext):
+                    builder.AddString(dicItem.Key, dicItem.Value.ToString());
+                    break;
+
+                case string nameStr when dicItem.Key.Equals(NBTName):
+
+                    nameStr = NbtEscapeHelper.Unescape(nameStr);
+                    JObject nameJobject = JObject.Parse(nameStr);
+
+                    builder.AddTag(DicJobjectHandle(nameJobject, dicItem.Key));
+
+                    break;
+
+                case string idStr when dicItem.Key.Equals(NBTID):
                     builder.AddString(dicItem.Key, dicItem.Value.ToString());
                     break;
 
@@ -204,7 +217,12 @@ public class NbtHelper
                     break;
 
 
-                case JObject blockJobject when dicItem.Key.Equals("BlockEntityTag"):
+                case JObject displayJobject when dicItem.Key.Equals(NBTdisplay):
+                    builder.AddTag(DicJobjectHandle(displayJobject, dicItem.Key));
+                    break;
+
+
+                case JObject blockJobject when dicItem.Key.Equals(NBTBlockEntityTag):
                     builder.AddTag(DicJobjectHandle(blockJobject, dicItem.Key));
                     break;
 
@@ -214,6 +232,23 @@ public class NbtHelper
                     builder.AddTag(dicJobjectTag);
                     break;
 
+                //铁砧重命名后里面的nbt信息
+                case JArray extraJArry when dicItem.Key.Equals(NBTextra):
+
+                    List<Dictionary<string, object>> extraDiclist = extraJArry.ToObject<List<Dictionary<string, object>>>();
+                    using (builder.NewList(TagType.Compound, dicItem.Key))
+                    {
+                        foreach (var dicJArryItem in extraDiclist)
+                        {
+                            foreach (var item in dicJArryItem)
+                            {
+                                var itemTagBuilder = DicToTag(ConvertToDictionary(item));
+                                builder.AddTag(itemTagBuilder.Create());
+                            }
+                        }
+                    }
+
+                    break;
                 case JArray dicPagesJArry when dicItem.Key.Equals(NBTpages):
 
                     List<string> stringList = dicPagesJArry.Select(item => (string)item).ToList();
@@ -226,6 +261,7 @@ public class NbtHelper
                     }
 
                     break;
+
                 case JArray dicJArry when dicItem.Key.Equals(NBTEnchantments):
                     List<Dictionary<string, object>> list = dicJArry.ToObject<List<Dictionary<string, object>>>();
                     using (builder.NewList(TagType.Compound, dicItem.Key))
@@ -245,6 +281,7 @@ public class NbtHelper
         return builder;
     }
 
+
     private static CompoundTag? DicJobjectHandle(JObject dicJobject, string name)
     {
         Dictionary<string, object> dictionary = dicJobject.ToObject<Dictionary<string, object>>();
@@ -259,7 +296,6 @@ public class NbtHelper
         return dictionary;
     }
 
-    #endregion
+
 
 }
-

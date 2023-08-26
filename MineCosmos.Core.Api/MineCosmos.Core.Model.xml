@@ -309,13 +309,6 @@
             Nullable:True
             </summary>
         </member>
-        <member name="P:MineCosmos.Core.Model.Models.Department.ModifyTime">
-            <summary>
-            Desc:更新时间
-            Default:
-            Nullable:True
-            </summary>
-        </member>
         <member name="T:MineCosmos.Core.Model.Models.GblLogAudit">
             <summary>
             用户团队表
@@ -1340,6 +1333,11 @@
         <member name="P:MineCosmos.Core.Model.ViewModels.Minecraft.PlayerWareHouseItemDto.WareHouseId">
             <summary>
             主表仓库ID
+            </summary>
+        </member>
+        <member name="P:MineCosmos.Core.Model.ViewModels.Minecraft.PlayerWareHouseItemDto.ItemData">
+            <summary>
+            原始NBT字符串数据
             </summary>
         </member>
         <member name="P:MineCosmos.Core.Model.ViewModels.Minecraft.PlayerWareHouseItemDto.NbtJson">

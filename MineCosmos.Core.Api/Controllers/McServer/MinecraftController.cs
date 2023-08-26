@@ -6,7 +6,10 @@ using MineCosmos.Core.IRepository.Base;
 using MineCosmos.Core.IServices.Minecraft;
 using MineCosmos.Core.Model.Models;
 using MineCosmos.Core.Model.ViewModels.Minecraft;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SharpNBT;
+using SharpNBT.SNBT;
 
 namespace MineCosmos.Core.Controllers
 {
@@ -43,7 +46,7 @@ namespace MineCosmos.Core.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task<dynamic> PutItem(ReqMinecraftItemDto model)
+        public async Task<dynamic> PutItem([FromBody] ReqMinecraftItemDto model)
         {
 
             bool hasPlayer = await _mcPlayerRepostiory.AnyAsync(a => a.UUID == model.UUID);
@@ -78,7 +81,7 @@ namespace MineCosmos.Core.Controllers
             playerWareHouseDefault.PlayerId = player.Id;
             PlayerWareHouse wareHouse = await _wareHouseService.AutoCreateDefaultWareHouseAsync(new()
             {
-                 WareHouse = playerWareHouseDefault,
+                WareHouse = playerWareHouseDefault,
                 Items = new List<PlayerWareHouseItem>
                  {
                       new PlayerWareHouseItem (){
@@ -93,6 +96,34 @@ namespace MineCosmos.Core.Controllers
 
 
             return "成功";
+        }
+
+        /// <summary>
+        /// 获取云仓库物品
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<dynamic> PullItem([FromBody]ReqMinecraftItemDto model)
+        {
+            var nbtStr = await _wareHouseService.GetWareHouseItemByPlayer(model.UUID, 1);
+
+
+            string namNbtStr = NbtEscapeHelper.Escape(nbtStr);
+
+            CompoundTag? tags = StringNbt.Parse(namNbtStr);
+
+            Dictionary<string, object>? nbtDic = NbtHelper.TagToDic(tags, null);
+
+            string webJson = JsonConvert.SerializeObject(nbtDic);
+
+            var dics = JsonConvert.DeserializeObject<Dictionary<string, object>>(webJson);
+
+            var Ntag = NbtHelper.DicToTag(dics).Create();
+            nbtStr = Ntag.Stringify();
+
+            return nbtStr;
+
         }
 
         /// <summary>

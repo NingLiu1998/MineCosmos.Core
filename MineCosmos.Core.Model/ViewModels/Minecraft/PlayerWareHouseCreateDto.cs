@@ -32,6 +32,12 @@ namespace MineCosmos.Core.Model.ViewModels.Minecraft
         /// </summary>
         public int WareHouseId { get; set; }
 
+
+        /// <summary>
+        /// 原始NBT字符串数据
+        /// </summary>
+        public string ItemData { get; set; }
+
         /// <summary>
         /// 物品NBT转换后的json对象
         /// </summary>

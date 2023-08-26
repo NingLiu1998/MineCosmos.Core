@@ -42,7 +42,7 @@ Dictionary<string, object>? testDic =nbtHelper.TagToDic(tags, null);
 string webJson =JsonConvert.SerializeObject(testDic);
 Console.WriteLine($"正经的Json :{webJson}");
 var  dics = JsonConvert.DeserializeObject<Dictionary<string, object>>(webJson);
-var Ntag = nbtHelper.DicToTag2(dics).Create();
+var Ntag = nbtHelper.DicToTag(dics).Create();
 string nSNBT =Ntag.Stringify();
 Console.WriteLine($"Dic To NBT字符串:{nSNBT}");
 

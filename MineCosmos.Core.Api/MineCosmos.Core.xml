@@ -324,6 +324,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:MineCosmos.Core.Controllers.MinecraftController.PullItem(MineCosmos.Core.Model.ViewModels.Minecraft.ReqMinecraftItemDto)">
+            <summary>
+            获取云仓库物品
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="M:MineCosmos.Core.Controllers.MinecraftController.KookBind(MineCosmos.Core.Controllers.MinecraftController.MinecraftRegisteServerPlayerInfo)">
             <summary>
             Kook绑定

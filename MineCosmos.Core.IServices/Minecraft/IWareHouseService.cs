@@ -19,5 +19,6 @@ namespace MineCosmos.Core.IServices.Minecraft
         /// <returns></returns>
         Task<PlayerWareHouse> AutoCreateDefaultWareHouseAsync(PlayerWareHouseCreateDto model);
         Task<List<PlayerWareHouseCreateDto>> GetPlayerAllWareHouse(int playerId);
+        Task<string> GetWareHouseItemByPlayer(string uuid, int slot);
     }
 }

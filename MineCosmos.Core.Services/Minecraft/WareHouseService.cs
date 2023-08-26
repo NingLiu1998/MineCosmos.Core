@@ -1,3 +1,4 @@
+using Mapster;
 using MineCosmos.Core.Common;
 using MineCosmos.Core.Common.Helper;
 using MineCosmos.Core.Common.Static;
@@ -20,9 +21,12 @@ namespace MineCosmos.Core.Services
     {
 
         readonly IBaseRepository<PlayerWareHouseItem> _mcPlayerWareHouseItem;
-        public WareHouseServiceService(IBaseRepository<PlayerWareHouseItem> mcPlayerWareHouseItem)
+        readonly IBaseRepository<MinecraftPlayer> _playerService;
+        public WareHouseServiceService(IBaseRepository<PlayerWareHouseItem> mcPlayerWareHouseItem,
+            IBaseRepository<MinecraftPlayer> playerService)
         {
             _mcPlayerWareHouseItem = mcPlayerWareHouseItem;
+            _playerService = playerService;
         }
 
         public async Task<List<PlayerWareHouse>> GetPlayerWareHouseByPlayerId(int playerId)
@@ -66,11 +70,27 @@ namespace MineCosmos.Core.Services
                 if (model.Items.Count + hasItemCount > playerWareHouse.UpperLimit)
                     throw Oops.Bah("添加物品到仓库失败，已超出仓库存储上限");
 
-                model.Items.ForEach(a => a.WareHouseId = playerWareHouse.Id);
-              //  model.Items.Adap
+                int slot = hasItemCount;
+                bool hasSlot = true;
+                while (hasSlot)
+                {
+                    slot++;
+                    hasSlot = await _mcPlayerWareHouseItem
+                   .AnyAsync(a => a.Slot == slot && a.WareHouseId == playerWareHouse.Id);
+                   
+                }
+
+                model.Items.ForEach(a =>
+                {
+                    a.WareHouseId = playerWareHouse.Id;
+                    a.Slot = slot;
+                });
+                //  model.Items.Adap
+
+                var items = model.Items.Adapt<List<PlayerWareHouseItem>>();
 
                 //批量添加物品
-              //  await _mcPlayerWareHouseItem.Add(model.Items);
+                await _mcPlayerWareHouseItem.Add(items);
             }
 
             return playerWareHouse;
@@ -114,7 +134,7 @@ namespace MineCosmos.Core.Services
                 {
                     continue;
                 }
-                
+
             }
             #endregion
 
@@ -128,6 +148,31 @@ namespace MineCosmos.Core.Services
             }
 
             return lst;
+        }
+
+
+        /// <summary>
+        /// 获取玩家默认仓库指定槽位物品的原始nbt字符串刷剧
+        /// </summary>
+        /// <param name="uuid"></param>
+        /// <param name="slot"></param>
+        /// <returns></returns>
+        public async Task<string> GetWareHouseItemByPlayer(string uuid, int slot)
+        {
+            var playerInfo = await _playerService.GetAsync(a => a.UUID == uuid);
+
+            if (playerInfo is null) throw Oops.Bah($"玩家信息不存在");
+
+            var defaultWareHouse = await GetAsync(a => a.PlayerId == playerInfo.Id && a.Type == PlayerWareHouseTypeEnum.默认仓库);
+
+            if (defaultWareHouse is null) throw Oops.Bah($"玩家默认仓库不存在");
+
+            var item = await _mcPlayerWareHouseItem.GetAsync(a => a.WareHouseId == defaultWareHouse.Id && a.Slot == slot);
+
+            if (item.ItemData.IsNullOrEmpty()) throw Oops.Bah($"默认仓库{defaultWareHouse.Name}的{slot}槽位物品数据异常");
+
+            return item.ItemData;
+
         }
     }
 }
