@@ -196,12 +196,7 @@ public class NbtHelper
                     break;
 
                 case string nameStr when dicItem.Key.Equals(NBTName):
-
-                    nameStr = NbtEscapeHelper.Unescape(nameStr);
-                    JObject nameJobject = JObject.Parse(nameStr);
-
-                    builder.AddTag(DicJobjectHandle(nameJobject, dicItem.Key));
-
+                    builder.AddString(dicItem.Key, nameStr);
                     break;
 
                 case string idStr when dicItem.Key.Equals(NBTID):

@@ -108,19 +108,18 @@ namespace MineCosmos.Core.Controllers
         {
             var nbtStr = await _wareHouseService.GetWareHouseItemByPlayer(model.UUID, 1);
 
+            #region 模拟
+            //模拟环节
+            //NBT转json
+            //CompoundTag? tags = StringNbt.Parse(nbtStr);
+            //Dictionary<string, object>? nbtDic = NbtHelper.TagToDic(tags, null);
+            //string webJson = JsonConvert.SerializeObject(nbtDic);
 
-            string namNbtStr = NbtEscapeHelper.Escape(nbtStr);
-
-            CompoundTag? tags = StringNbt.Parse(namNbtStr);
-
-            Dictionary<string, object>? nbtDic = NbtHelper.TagToDic(tags, null);
-
-            string webJson = JsonConvert.SerializeObject(nbtDic);
-
-            var dics = JsonConvert.DeserializeObject<Dictionary<string, object>>(webJson);
-
-            var Ntag = NbtHelper.DicToTag(dics).Create();
-            nbtStr = Ntag.Stringify();
+            ////json转NBT
+            //var dics = JsonConvert.DeserializeObject<Dictionary<string, object>>(webJson);
+            //var Ntag = NbtHelper.DicToTag(dics).Create();
+            //nbtStr = Ntag.Stringify();
+            #endregion
 
             return nbtStr;
 

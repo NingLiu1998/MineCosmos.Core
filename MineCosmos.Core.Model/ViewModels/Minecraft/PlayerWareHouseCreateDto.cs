@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MineCosmos.Core.Model.Models;
+using Newtonsoft.Json.Linq;
 
 namespace MineCosmos.Core.Model.ViewModels.Minecraft
 {
@@ -41,7 +42,7 @@ namespace MineCosmos.Core.Model.ViewModels.Minecraft
         /// <summary>
         /// 物品NBT转换后的json对象
         /// </summary>
-        public dynamic NbtJson { get; set; }
+        public JObject NbtJson { get; set; }
 
         /// <summary>
         /// 物品类型（可能产生的json数据会不一样，所以这里区分)

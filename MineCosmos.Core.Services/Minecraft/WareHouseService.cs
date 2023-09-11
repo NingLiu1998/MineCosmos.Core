@@ -8,6 +8,9 @@ using MineCosmos.Core.IServices.Minecraft;
 using MineCosmos.Core.Model.Models;
 using MineCosmos.Core.Model.ViewModels.Minecraft;
 using MineCosmos.Core.Services.BASE;
+using Newtonsoft.Json.Linq;
+using SharpNBT;
+using SharpNBT.SNBT;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -77,7 +80,7 @@ namespace MineCosmos.Core.Services
                     slot++;
                     hasSlot = await _mcPlayerWareHouseItem
                    .AnyAsync(a => a.Slot == slot && a.WareHouseId == playerWareHouse.Id);
-                   
+
                 }
 
                 model.Items.ForEach(a =>
@@ -113,18 +116,20 @@ namespace MineCosmos.Core.Services
 
             List<PlayerWareHouseCreateDto> lst = new();
 
-            #region 物品NBT 转换 Dic
+            #region 物品NBT 转 JSON  TODO:封装
             var lstItem = new List<PlayerWareHouseItemDto>();
             foreach (PlayerWareHouseItem wareHouseItem in lstWareHouseItem)
             {
                 //暂时这样处理无法转换的物品
                 try
                 {
-                    var nbtDic = NbtHelper.NbtStrToDic(wareHouseItem.ItemData);
+                    CompoundTag tags = StringNbt.Parse(wareHouseItem.ItemData);
+
+                    //var nbtDic = NbtHelper.NbtStrToDic(wareHouseItem.ItemData);
                     lstItem.Add(new PlayerWareHouseItemDto
                     {
                         ItemType = wareHouseItem.ItemType,
-                        NbtJson = nbtDic,
+                        NbtJson = (JObject)(JArray.Parse(tags.ToJson())).FirstOrDefault(),
                         Slot = wareHouseItem.Slot,
                         WareHouseId = wareHouseItem.WareHouseId,
                         NbtId = wareHouseItem.Id
@@ -152,7 +157,7 @@ namespace MineCosmos.Core.Services
 
 
         /// <summary>
-        /// 获取玩家默认仓库指定槽位物品的原始nbt字符串刷剧
+        /// 获取玩家默认仓库指定槽位物品的原始nbt字符串
         /// </summary>
         /// <param name="uuid"></param>
         /// <param name="slot"></param>

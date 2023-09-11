@@ -12,17 +12,17 @@ using SharpNBT;
 namespace pack包加密研究
 {
 
-    public static partial class NbtEscapeHelper
-    {
-        public static string Escape(string input) =>
-            NbtEscapeRegex()
-                .Replace(input, match => match.Groups[0].Value.Replace("\"", "\\u0022"));
+    //public static partial class NbtEscapeHelper
+    //{
+    //    public static string Escape(string input) =>
+    //        NbtEscapeRegex()
+    //            .Replace(input, match => match.Groups[0].Value.Replace("\"", "\\u0022"));
 
-        [GeneratedRegex("'.*?'", RegexOptions.Compiled)]
-        private static partial Regex NbtEscapeRegex();
+    //    [GeneratedRegex("'.*?'", RegexOptions.Compiled)]
+    //    private static partial Regex NbtEscapeRegex();
 
-        public static string Unescape(string input) => input.Replace("\\u0022", "\"");
-    }
+    //    public static string Unescape(string input) => input.Replace("\\u0022", "\"");
+    //}
 
 
     public class nbtHelper
@@ -175,6 +175,13 @@ namespace pack包加密研究
             TagBuilder? builder = new TagBuilder(name);
             foreach (var dicItem in dic)
             {
+
+                //debug
+                if(dicItem.Key == NBTName)
+                {
+
+                }
+
                 switch (dicItem.Value)
                 {
 
@@ -192,10 +199,13 @@ namespace pack包加密研究
 
                     case string nameStr when dicItem.Key.Equals(NBTName):
 
-                        nameStr = NbtEscapeHelper.Unescape(nameStr);
-                        JObject nameJobject = JObject.Parse(nameStr);
+                        //nameStr = NbtEscapeHelper.Unescape(nameStr);
+                        //JObject nameJobject = JObject.Parse(nameStr);
 
-                        builder.AddTag(DicJobjectHandle(nameJobject, dicItem.Key));
+
+                        builder.AddString(dicItem.Key, nameStr);
+
+                        //builder.AddTag(DicJobjectHandle(nameJobject, dicItem.Key));
 
                         break;
 
