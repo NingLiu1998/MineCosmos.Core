@@ -32,6 +32,56 @@ namespace MineCosmos.Core.Services
             _playerService = playerService;
         }
 
+        #region 仓库功能
+
+
+        /// <summary>
+        /// 仓库整理
+        /// *目的就是把相同类型不满一组的物品合并到一个格子
+        /// </summary>
+        /// <param name="wareHouseId">仓库ID</param>
+        /// <returns></returns>
+        public async Task TidyUp(int wareHouseId)
+        {
+            var has = await AnyAsync(a => a.Id == wareHouseId);
+            if (!has) return;
+            var lstWareHouseInfo = await _mcPlayerWareHouseItem.GetListAsync
+                 (a => a.WareHouseId == wareHouseId);
+            if (lstWareHouseInfo.Count <= 0) return;
+
+            //先拿到转换后的Tag集合
+            List<CompoundTag> lstTag = new();
+            foreach (var item in lstWareHouseInfo) lstTag.Add(StringNbt.Parse(item.ItemData));
+
+
+
+            //minecraft:iron_ingot
+
+            //lstTag.Where(a=>a.item)
+
+            foreach (CompoundTag tagItem in lstTag)
+            {
+                tagItem.TryGetValue(NbtHelper.NBTID, out StringTag id);
+                switch (id)
+                {
+                    case "minecraft:iron_ingot":
+
+                        break;
+
+                    default:
+                        break;
+                }
+
+            }
+
+
+
+
+
+        }
+
+        #endregion
+
         public async Task<List<PlayerWareHouse>> GetPlayerWareHouseByPlayerId(int playerId)
         {
             var playerWareHouse = await base.GetListAsync(a => a.PlayerId == playerId);

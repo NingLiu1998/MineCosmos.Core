@@ -79,7 +79,7 @@ namespace MineCosmos.Core.Controllers
                 player.Id = await _mcPlayerRepostiory.Add(player);
             }
             playerWareHouseDefault.PlayerId = player.Id;
-            PlayerWareHouse wareHouse = await _wareHouseService.AutoCreateDefaultWareHouseAsync(new()
+            PlayerWareHouse wareHouse = await _wareHouseService.AutoCreateDefaultWareHouseAsync(new PlayerWareHouseCreateDto()
             {
                 WareHouse = playerWareHouseDefault,
                 Items = new List<PlayerWareHouseItem>
@@ -124,6 +124,10 @@ namespace MineCosmos.Core.Controllers
             return nbtStr;
 
         }
+
+
+        
+
 
         /// <summary>
         /// Kook绑定

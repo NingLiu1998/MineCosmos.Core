@@ -37,7 +37,7 @@ string testNbtStrMore = "{Count:1b,id:\"minecraft:magenta_shulker_box\",tag:{Blo
 
 CompoundTag? tags = StringNbt.Parse(testNbtStr3);
 
-
+//下边的不管
 
 Dictionary<string, object>? testDic =nbtHelper.TagToDic(tags, null);
 
@@ -45,6 +45,7 @@ string webJson =JsonConvert.SerializeObject(testDic);
 Console.WriteLine($"正经的Json :{webJson}");
 var  dics = JsonConvert.DeserializeObject<Dictionary<string, object>>(webJson);
 var Ntag = nbtHelper.DicToTag(dics).Create();
+
 string nSNBT = Ntag.Stringify(false,false);
 
 

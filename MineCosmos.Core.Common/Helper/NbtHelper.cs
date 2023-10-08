@@ -22,41 +22,40 @@ public static partial class NbtEscapeHelper
 }
 
 
-public class NbtHelper
+public struct NbtHelper
 {
-
-    static string NBTID => "id";
-    static string NBTCOUNT => "Count";
-    static string NBTLVL => "lvl";
-    static string NBTDAMAGE => "Damage";
-    static string NBTTAG => "tag";
-    static string NBTtext => "text";
-    static string NBTEnchantments => "Enchantments";
-    static string NBTSlot => "Slot";
-    static string NBTBlockEntityTag => "BlockEntityTag";
-    static string NBTItems => "Items";
+    public static string NBTID => "id";
+    public static string NBTCOUNT => "Count";
+    public static string NBTLVL => "lvl";
+    public static string NBTDAMAGE => "Damage";
+    public static string NBTTAG => "tag";
+    public static string NBTtext => "text";
+    public static string NBTEnchantments => "Enchantments";
+    public static string NBTSlot => "Slot";
+    public static string NBTBlockEntityTag => "BlockEntityTag";
+    public static string NBTItems => "Items";
 
     /// <summary>
     /// 物品的自定义显示信息（名称、描述、皮革盔甲的颜色等等）
     /// </summary>
-    static string NBTdisplay => "display";
+    public static string NBTdisplay => "display";
 
     /// <summary>
     /// 物品名称底下的文字，必须是原始JSON文本
     /// </summary>
-    static string NBTLore => "Lore";
+    public static string NBTLore => "Lore";
     /// <summary>
     /// 书本
     /// </summary>
-    static string NBTpages => "pages";
+    public static string NBTpages => "pages";
 
     /// <summary>
     /// 能够为生物以及物品增加属性修饰符
     /// </summary>
-    static string NBTAttributeModifiers => "AttributeModifiers";
-    static string NBTextra => "extra";
-    static string NBTName => "Name";
-    static string NBTRepairCost => "RepairCost";
+    public static string NBTAttributeModifiers => "AttributeModifiers";
+    public static string NBTextra => "extra";
+    public static string NBTName => "Name";
+    public static string NBTRepairCost => "RepairCost";
 
     public static CompoundTag NbtStrToString(string nbtStr)
     {
